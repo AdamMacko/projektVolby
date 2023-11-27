@@ -27,8 +27,17 @@ public class StartSceneController {
 
     @FXML
     void prihlasenie(ActionEvent event) {
-    	openInstrukcieOkno();
-    	((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
+
+			String meno = menoTextField.getText().trim();
+			String heslo = hesloTextField.getText().trim();
+			if("admin".equals(meno) && "admin".equals(heslo)) {
+				openInstrukcieOkno();
+				((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
+
+
+			}
+
+
     }
     
     

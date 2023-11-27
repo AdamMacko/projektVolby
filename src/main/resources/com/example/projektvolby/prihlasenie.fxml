@@ -3,13 +3,14 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="heslotextfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="110.0" layoutY="107.0" text="meno:">
          <font>
@@ -22,7 +23,6 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="hesloTextField" layoutX="176.0" layoutY="173.0" prefHeight="26.0" prefWidth="301.0" />
       <Button fx:id="prihlasenieButton" layoutX="245.0" layoutY="231.0" mnemonicParsing="false" onAction="#prihlasenie" text="Prihlásiť sa">
          <font>
             <Font size="18.0" />
@@ -38,6 +38,7 @@
             <Font name="AGA Arabesque" size="20.0" />
          </font>
       </Text>
+      <PasswordField layoutX="182.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
