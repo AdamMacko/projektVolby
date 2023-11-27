@@ -27,24 +27,23 @@ public class StartSceneController {
 
     @FXML
     void prihlasenie(ActionEvent event) {
-    	openVolenieOkno();
+    	openInstrukcieOkno();
     	((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
-
     }
     
     
-    private void openVolenieOkno() {
+    private void openInstrukcieOkno() {
 		try {
 			VolenieSceneController controller = new VolenieSceneController();
 			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("vitajte.fxml"));
+					getClass().getResource("instrukcie.fxml"));
 			loader.setController(controller);
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent);
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle("Attender");
+			stage.setTitle("INSTRUKCIE");
 			stage.show();
 			
 		} catch (IOException e) {

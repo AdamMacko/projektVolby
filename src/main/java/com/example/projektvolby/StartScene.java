@@ -22,27 +22,13 @@ public class StartScene extends Application {
 		Parent parent = loader.load();
 		Scene scene = new Scene(parent);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Attender");
+		primaryStage.setTitle("PRIHLÁSENIE");
 		primaryStage.show();
-	
-
-		
 	}
 
 
     public static void main(String[] args) {
-
         launch();
     }
-    
 
-
-
-
-	
-
-	
-
-
-	
 }
