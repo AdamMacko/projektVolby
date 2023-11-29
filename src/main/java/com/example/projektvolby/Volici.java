@@ -6,7 +6,6 @@ public class Volici {
 	private String priezvisko;
 	private String cOP;
 	private boolean dochadzka;
-	private boolean externy;
 	private Ulice ulica;
 
 }

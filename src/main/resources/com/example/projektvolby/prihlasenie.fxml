@@ -38,7 +38,7 @@
             <Font name="AGA Arabesque" size="20.0" />
          </font>
       </Text>
-      <PasswordField layoutX="182.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" />
+      <PasswordField fx:id="hesloTextField" layoutX="182.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
