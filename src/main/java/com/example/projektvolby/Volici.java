@@ -8,4 +8,5 @@ public class Volici {
 	private boolean dochadzka;
 	private Ulice ulica;
 
+
 }
