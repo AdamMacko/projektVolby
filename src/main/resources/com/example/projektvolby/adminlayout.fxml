@@ -3,12 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="pridaniaStranyButton" mnemonicParsing="false" onAction="#pridanieStrany" prefHeight="200.0" prefWidth="300.0" text="pridavanie stran" />
-      <Button fx:id="editaciaStranyButton" layoutX="300.0" mnemonicParsing="false" onAction="#editaciaStrany" prefHeight="200.0" prefWidth="300.0" text="editacia stran" />
-      <Button fx:id="pridanieLudiButton" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#pridanieLudi" prefHeight="200.0" prefWidth="300.0" text="pridanie ludi" />
-      <Button fx:id="predbezneButton" layoutY="200.0" mnemonicParsing="false" onAction="#predbezne" prefHeight="200.0" prefWidth="300.0" text="predbezne vysledky" />
+      <Button fx:id="pridaniaStranyButton" layoutX="178.0" layoutY="104.0" mnemonicParsing="false" onAction="#pridanieStrany" prefHeight="39.0" prefWidth="244.0" text="Pridať stranu" />
+      <Button fx:id="editaciaStranyButton" layoutX="178.0" layoutY="160.0" mnemonicParsing="false" onAction="#editaciaStrany" prefHeight="39.0" prefWidth="244.0" text="Editovať stranu" />
+      <Button fx:id="pridanieLudiButton" layoutX="178.0" layoutY="269.0" mnemonicParsing="false" onAction="#pridanieLudi" prefHeight="39.0" prefWidth="244.0" text="Pridať voliča" />
+      <Button fx:id="predbezneButton" layoutX="178.0" layoutY="212.0" mnemonicParsing="false" onAction="#predbezne" prefHeight="39.0" prefWidth="244.0" text="Zobraziť výsledok" />
+      <Button fx:id="pridanieUlicButton" layoutX="178.0" layoutY="324.0" mnemonicParsing="false" onAction="#pridanieUlic" prefHeight="39.0" prefWidth="244.0" text="Pridať ulicu" />
    </children>
 </AnchorPane>

@@ -7,11 +7,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public enum DaoFactory {
     INSTANCE;
     private KandidatiDao kandidatiDao;
-    private StranyDao stranyDao;
+    private StranaDao stranyDao;
     private UliceDao uliceDao;
     private VolebneListkyDao volebne_listyDao;
     private VoleniKandidatiDao voleny_kandidatiDao;
-    private VoliciDao voliciDao;
+    private VolicDao voliciDao;
 
     private JdbcTemplate jdbcTemplate;
 
@@ -36,7 +36,12 @@ public enum DaoFactory {
         return kandidatiDao;
     }
 
-    public StranyDao getStranyDao() {
+    public StranaDao getStranyDao() {
+        if(stranyDao == null){
+          //  stranyDao = new MysqlStranyDao(getJdbcTemplate());
+        }
+
+
         return stranyDao;
     }
 
@@ -52,7 +57,7 @@ public enum DaoFactory {
         return voleny_kandidatiDao;
     }
 
-    public VoliciDao getVoliciDao() {
+    public VolicDao getVoliciDao() {
         return voliciDao;
     }
 }

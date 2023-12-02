@@ -7,4 +7,11 @@ public class Ulice {
 	private int PSC;
 	private String obec;
 
+
+
+
+
+
+
+
 }
