@@ -1,6 +1,6 @@
 package com.example.projektvolby;
 
-public class Voter {
+public class Spustac {
 
     //hlavny spustac
     public static void main (String[]args){

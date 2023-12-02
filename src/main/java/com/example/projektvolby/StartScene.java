@@ -5,17 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-
-
-
 
 
 public class StartScene extends Application {
 	
     @Override
 	public void start(Stage primaryStage) throws Exception {
-		StartSceneController controller = new StartSceneController();
+		PrihlasenieScenaController controller = new PrihlasenieScenaController();
 		FXMLLoader loader = new FXMLLoader(
 				getClass().getResource("prihlasenie.fxml"));
 		loader.setController(controller);

@@ -3,7 +3,6 @@ package com.example.projektvolby;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class StartSceneController {
+public class PrihlasenieScenaController {
 
 	@FXML
     private TextField hesloTextField;
@@ -56,7 +55,7 @@ public class StartSceneController {
     
     private void openInstrukcieOkno() {
 		try {
-			VolenieSceneController controller = new VolenieSceneController();
+			VolenieOknoController controller = new VolenieOknoController();
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("instrukcie.fxml"));
 			loader.setController(controller);
@@ -74,7 +73,7 @@ public class StartSceneController {
     }
 	private void openAdminlayout() {
 		try {
-			AdminlayoutSceneController controller = new AdminlayoutSceneController();
+			AdminLayoutSceneController controller = new AdminLayoutSceneController();
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("adminlayout.fxml"));
 			loader.setController(controller);

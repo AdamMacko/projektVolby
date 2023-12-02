@@ -1,5 +1,8 @@
 package com.example.projektvolby;
 
+
+
+// trieda uchovavajuca info o volicoch
 public class Volici {
 	private long id;
 	private String meno;

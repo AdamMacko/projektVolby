@@ -1,16 +1,16 @@
-package com.example.projektvolby;
+package com.example.projektvolby.storage;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public enum DaoFactory {
     INSTANCE;
     private KandidatiDao kandidatiDao;
-    private  StranyDao stranyDao;
+    private StranyDao stranyDao;
     private UliceDao uliceDao;
-    private Volebne_listkyDao volebne_listyDao;
-    private Voleny_kandidatiDao voleny_kandidatiDao;
+    private VolebneListkyDao volebne_listyDao;
+    private VoleniKandidatiDao voleny_kandidatiDao;
     private VoliciDao voliciDao;
 
     private JdbcTemplate jdbcTemplate;
@@ -18,9 +18,9 @@ public enum DaoFactory {
     private JdbcTemplate getJdbcTemplate() {
         if(jdbcTemplate==null){
             MysqlDataSource dataSource = new MysqlDataSource();
-            dataSource.setUser("paz1c");
-            dataSource.setPassword("paz1cjesuper");
-            dataSource.setUrl("jdbc:mysql://localhost:3306/paz1c");
+            dataSource.setUser("root");
+            dataSource.setPassword("heslo");
+            dataSource.setUrl("jdbc:mysql://localhost:3306/evolby");
             jdbcTemplate = new JdbcTemplate(dataSource);
 
 
@@ -44,11 +44,11 @@ public enum DaoFactory {
         return uliceDao;
     }
 
-    public Volebne_listkyDao getVolebne_listyDao() {
+    public VolebneListkyDao getVolebne_listyDao() {
         return volebne_listyDao;
     }
 
-    public Voleny_kandidatiDao getVoleny_kandidatiDao() {
+    public VoleniKandidatiDao getVoleny_kandidatiDao() {
         return voleny_kandidatiDao;
     }
 

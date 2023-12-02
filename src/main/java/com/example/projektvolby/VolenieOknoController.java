@@ -1,5 +1,5 @@
 package com.example.projektvolby;
 
-public class VoliciDao {
+public class VolenieOknoController {
 
 }

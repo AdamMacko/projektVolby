@@ -17,7 +17,8 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="menoTextField" layoutX="176.0" layoutY="111.0" prefHeight="26.0" prefWidth="301.0" />
+      <TextField fx:id="menoTextField" layoutX="182.0" layoutY="112.0" prefHeight="26.0" prefWidth="301.0" />
+      <PasswordField fx:id="hesloTextField" layoutX="182.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" />
       <Label layoutX="112.0" layoutY="164.0" text="heslo:">
          <font>
             <Font size="24.0" />
@@ -38,7 +39,6 @@
             <Font name="AGA Arabesque" size="20.0" />
          </font>
       </Text>
-      <PasswordField fx:id="hesloTextField" layoutX="182.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

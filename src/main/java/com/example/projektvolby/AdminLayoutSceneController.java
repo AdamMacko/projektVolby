@@ -1,10 +1,11 @@
 package com.example.projektvolby;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class AdminlayoutSceneController {
+public class AdminLayoutSceneController {
 
     @FXML
     private Button editaciaStranyButton;
