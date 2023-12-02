@@ -44,11 +44,11 @@ public enum DaoFactory {
         return uliceDao;
     }
 
-    public VolebneListkyDao getVolebne_listyDao() {
+    public VolebneListkyDao getVolebneListkyDao() {
         return volebne_listyDao;
     }
 
-    public VoleniKandidatiDao getVoleny_kandidatiDao() {
+    public VoleniKandidatiDao getVolenyKandidatDao() {
         return voleny_kandidatiDao;
     }
 
