@@ -10,7 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
 
 public class VoliciScenaController {
 
@@ -51,7 +55,26 @@ public class VoliciScenaController {
     @FXML
     //nacitanie zo suboru
     void extrahovat(ActionEvent event) {
+        System.out.println("ahoj");
+        File voliciZoznam = new File("volici.csv");
+        nacitajVolicov(voliciZoznam);
 
+    }
+
+    public List<Volic>  nacitajVolicov(File file){
+    try (Scanner sc = new Scanner(file,"utf-8")){
+        while(sc.hasNextLine()){
+            String line = sc.nextLine();
+            System.out.println(line);
+
+        }
+
+    } catch (FileNotFoundException e) {
+            System.err.println("Export sa nenašiel");
+        }
+
+
+        return null;
     }
 
     @FXML

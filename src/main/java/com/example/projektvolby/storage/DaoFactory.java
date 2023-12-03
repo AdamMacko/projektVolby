@@ -11,7 +11,7 @@ public enum DaoFactory {
     private UliceDao uliceDao;
     private VolebneListkyDao volebne_listyDao;
     private VoleniKandidatiDao voleny_kandidatiDao;
-    private VolicDao voliciDao;
+    private VolicDao volicDao;
 
     private JdbcTemplate jdbcTemplate;
 
@@ -58,6 +58,10 @@ public enum DaoFactory {
     }
 
     public VolicDao getVoliciDao() {
-        return voliciDao;
+        if (volicDao == null){
+
+        }
+
+        return volicDao;
     }
 }
