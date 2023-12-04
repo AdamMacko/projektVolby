@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Objects;
 
-import com.example.projektvolby.Kandidati;
+import com.example.projektvolby.Kandidat;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,37 +21,37 @@ public class MysqlKandidatiDao implements KandidatiDao{
     public MysqlKandidatiDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    private RowMapper<Kandidati> kandidatiRM(){
-        return new RowMapper<Kandidati>() {
+    private RowMapper<Kandidat> kandidatiRM(){
+        return new RowMapper<Kandidat>() {
 
             @Override
-            public Kandidati mapRow(ResultSet rs, int rowNum) throws SQLException {
+            public Kandidat mapRow(ResultSet rs, int rowNum) throws SQLException {
                 long id = rs.getLong("id");
                 String meno = rs.getString("meno");
                 String priezvisko = rs.getString("priezvisko");
                 int vek=rs.getInt("vek");
 
-                Kandidati kandidat = new Kandidati(id, meno, priezvisko,vek);
+                Kandidat kandidat = new Kandidat(id, meno, priezvisko,vek);
                 return kandidat;
             }
         };
     }
 
     @Override
-    public List<Kandidati> getAllBySubjectId(long StranaId) {
+    public List<Kandidat> getAllBySubjectId(long StranaId) {
         String sql = "SELECT id, meno, priezvisko,vek FROM evolby"
                 + " WHERE strana_id = " + StranaId
                 + " ORDER BY priezvisko";
         return jdbcTemplate.query(sql, kandidatiRM());
     }
     @Override
-    public Kandidati getById(long id) throws EntityNotFoundException {
+    public Kandidat getById(long id) throws EntityNotFoundException {
         String sql = "SELECT id, meno, priezvisko, vek FROM kandidati"
                 + " WHERE id = " + id;
         return jdbcTemplate.queryForObject(sql, kandidatiRM());
     }
     @Override
-    public Kandidati save(Kandidati kandidat, long StranaId) throws EntityNotFoundException {
+    public Kandidat save(Kandidat kandidat, long StranaId) throws EntityNotFoundException {
         Objects.requireNonNull(kandidat, "Kandidat nemôže byť prázdny");
         Objects.requireNonNull(kandidat.getMeno(),"Meno nemôže byť prázdne");
         Objects.requireNonNull(kandidat.getPriezvisko(),"Priezvisko nemôže byť prázdne");
@@ -73,7 +73,7 @@ public class MysqlKandidatiDao implements KandidatiDao{
                 }
             }, keyHolder);
             long id = keyHolder.getKey().longValue();
-            Kandidati saved = Kandidati.clone(kandidat);
+            Kandidat saved = Kandidat.clone(kandidat);
             saved.setId(id);
             return saved;
         } else {	//UPDATE

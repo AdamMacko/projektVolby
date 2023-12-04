@@ -1,5 +1,8 @@
 package com.example.projektvolby;
 
+import com.example.projektvolby.storage.DaoFactory;
+import com.example.projektvolby.storage.KandidatiDao;
+import com.example.projektvolby.storage.StranyDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -10,7 +13,7 @@ import javafx.scene.control.*;
 public class PridanieStranySceneController {
 
     @FXML
-    private ListView<Kandidati> listKandidatov;
+    private ListView<Kandidat> listKandidatov;
 
     @FXML
     private TextField meno;
@@ -38,10 +41,12 @@ public class PridanieStranySceneController {
 
     private StranyFxModel stranyFxModel;
 
+    private Strana novaStrana;
+
     public PridanieStranySceneController(){
         stranyFxModel=new StranyFxModel();
     }
-    public  PridanieStranySceneController(Strany strana){
+    public  PridanieStranySceneController(Strana strana){
         stranyFxModel=new StranyFxModel(strana);
     }
 
@@ -85,7 +90,7 @@ public class PridanieStranySceneController {
             krstne = celeMeno.substring(0, index).trim();
             priezvisko = celeMeno.substring(index + 1).trim();
         }
-        Kandidati kandidat = new Kandidati(krstne,priezvisko,age);
+        Kandidat kandidat = new Kandidat(krstne,priezvisko,age);
         stranyFxModel.kandidatiModel().add(kandidat);
         meno.clear();
         vek.clear();
@@ -113,12 +118,17 @@ public class PridanieStranySceneController {
 
     @FXML
     void ulozStranu(ActionEvent event) {
+        Strana strana= stranyFxModel.getStrana();
+        StranyDao stranyDao = DaoFactory.INSTANCE.getStranyDao();
+        novaStrana=stranyDao.save(strana);
+        ulozenie.getScene().getWindow().hide();
+
 
     }
 
     @FXML
     void vymazKanidata(ActionEvent event) {
-        Kandidati kandidat=listKandidatov.getSelectionModel().getSelectedItem();
+        Kandidat kandidat=listKandidatov.getSelectionModel().getSelectedItem();
         System.out.print(kandidat);
         if(kandidat !=null){
             stranyFxModel.kandidatiModel().remove(kandidat);

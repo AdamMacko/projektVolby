@@ -27,6 +27,10 @@ public class AdminLayoutSceneController {
     private Button pridanieLudiButton;
 
     @FXML
+    private Button pridanieUlicButton;
+
+
+    @FXML
     void editaciaStrany(ActionEvent event) {
 
     }
@@ -35,9 +39,14 @@ public class AdminLayoutSceneController {
     void predbezne(ActionEvent event) {
 
     }
+    @FXML
+    void pridanieUlic(ActionEvent event) {
+
+    }
 
     @FXML
     void pridanieLudi(ActionEvent event) {
+        openvoliciOkno();
 
     }
 
@@ -57,6 +66,24 @@ public class AdminLayoutSceneController {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("NOVA STRANA");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void openvoliciOkno() {
+        try {
+            VoliciScenaController controller = new VoliciScenaController();
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("volici.fxml"));
+            loader.setController(controller);
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("ADMIN");
             stage.show();
 
         } catch (IOException e) {

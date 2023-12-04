@@ -13,11 +13,11 @@ public class StranyFxModel {
     private Long id;
     private StringProperty nazov = new SimpleStringProperty();
     private StringProperty volebnyPlan = new SimpleStringProperty();
-    private ObservableList<Kandidati> kandidati;
+    private ObservableList<Kandidat> kandidati;
     public StranyFxModel() {
         kandidati = FXCollections.observableArrayList();
     }
-    public StranyFxModel(Strany strana) {
+    public StranyFxModel(Strana strana) {
         id= strana.getId();
         setNazov(strana.getNazov());
         setVolebnyPlan(strana.getVolebny_plan().getText());
@@ -50,16 +50,16 @@ public class StranyFxModel {
         this.volebnyPlan.setValue(volebnyPlan);
     }
 
-    public List<Kandidati> getKandidati() {
-        return new ArrayList<Kandidati>(kandidati);
+    public List<Kandidat> getKandidati() {
+        return new ArrayList<Kandidat>(kandidati);
     }
 
 
-    public ObservableList<Kandidati> kandidatiModel() {
+    public ObservableList<Kandidat> kandidatiModel() {
         return kandidati;
     }
-    public Strany getStrana() {
-        return new Strany(id, getNazov(), new Text(getVolebnyPlan()), getKandidati());
+    public Strana getStrana() {
+        return new Strana(id, getNazov(), new Text(getVolebnyPlan()), getKandidati());
     }
 
 

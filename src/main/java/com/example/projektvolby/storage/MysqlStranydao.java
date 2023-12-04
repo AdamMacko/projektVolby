@@ -4,12 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.example.projektvolby.Kandidati;
-import com.example.projektvolby.Strany;
+import com.example.projektvolby.Kandidat;
+import com.example.projektvolby.Strana;
 import javafx.scene.text.Text;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -23,28 +22,28 @@ public class MysqlStranydao implements StranyDao{
         this.jdbcTemplate = jdbcTemplate;
     }
     @Override
-    public List<Strany> getAll() {
+    public List<Strana> getAll() {
         String query = "SELECT id, name, study_year FROM subject "
                 + "ORDER BY study_year DESC, name ASC";
-        List<Strany> result = jdbcTemplate.query(query, new RowMapper<Strany>() {
+        List<Strana> result = jdbcTemplate.query(query, new RowMapper<Strana>() {
 
             @Override
-            public Strany mapRow(ResultSet rs, int rowNum) throws SQLException {
+            public Strana mapRow(ResultSet rs, int rowNum) throws SQLException {
                 long id = rs.getLong("id");
                 String nazov = rs.getString("nazov");
                 String sqlvolebnyPlan = rs.getString("volebny_plan");
                 Text volebnyPlan = new Text(sqlvolebnyPlan);
 //				List<Student> students = studentDao.getAllBySubjectId(id);
-                return new Strany(id, nazov, volebnyPlan, null);
+                return new Strana(id, nazov, volebnyPlan, null);
             }
         });
-        for (Strany str: result) {
+        for (Strana str: result) {
             str.setKandidati(kandidatiDao.getAllBySubjectId(str.getId()));
         }
         return result;
     }
     @Override
-    public Strany save(Strany strana) throws EntityNotFoundException {
+    public Strana save(Strana strana) throws EntityNotFoundException {
         Objects.requireNonNull(strana, "Strana nemôže byť prázdna");
         Objects.requireNonNull(strana.getKandidati(),
                 "List kandidatov nemôže byť prázdny");
@@ -64,15 +63,15 @@ public class MysqlStranydao implements StranyDao{
                 return statement;
             }, keyHolder);
             long id = keyHolder.getKey().longValue();
-            for (Kandidati kandidat: strana.getKandidati()) {
+            for (Kandidat kandidat: strana.getKandidati()) {
                 kandidatiDao.save(kandidat,id);
             }
-            return new Strany(id,
+            return new Strana(id,
                     strana.getNazov(),
                     strana.getVolebny_plan(),
                     strana.getKandidati()
                             .stream()
-                            .map(kandidat-> Kandidati.clone(kandidat))
+                            .map(kandidat-> Kandidat.clone(kandidat))
                             .toList());
 
         } else {	//UPDATE
@@ -90,13 +89,13 @@ public class MysqlStranydao implements StranyDao{
 //			for (Student student: subject.getStudents()) {
 //				studentDao.save(student, subject.getId());
 //			}
-            for (Kandidati novyKan: strana.getKandidati()) {
+            for (Kandidat novyKan: strana.getKandidati()) {
                 if (novyKan.getId() == null) {
                     kandidatiDao.save(novyKan, strana.getId());
                 }
             }
-            List<Kandidati> minuly = kandidatiDao.getAllBySubjectId(strana.getId());
-            for (Kandidati minKan: minuly) {
+            List<Kandidat> minuly = kandidatiDao.getAllBySubjectId(strana.getId());
+            for (Kandidat minKan: minuly) {
                 if (! strana.getKandidati().contains(minKan)) {
                     kandidatiDao.delete(minKan.getId());
                 }
