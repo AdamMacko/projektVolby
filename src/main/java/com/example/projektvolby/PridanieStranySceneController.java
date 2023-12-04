@@ -1,7 +1,6 @@
 package com.example.projektvolby;
 
 import com.example.projektvolby.storage.DaoFactory;
-import com.example.projektvolby.storage.KandidatiDao;
 import com.example.projektvolby.storage.StranyDao;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,31 +12,31 @@ import javafx.scene.control.*;
 public class PridanieStranySceneController {
 
     @FXML
-    private ListView<Kandidat> listKandidatov;
+    private ListView<Kandidat> kandidatiListView;
 
     @FXML
-    private TextField meno;
+    private TextField menoTextField;
 
     @FXML
-    private TextField nazov;
+    private TextField nazovTextField;
 
     @FXML
-    private Button pridaniekKandidata;
+    private Button pridatButton;
 
     @FXML
-    private Button ulozenie;
+    private Button ulozitButton;
 
     @FXML
-    private TextField vek;
+    private TextField vekTextField;
 
     @FXML
-    private TextArea volebnyPlan;
+    private TextArea volebnyPlanTextArea;
 
     @FXML
-    private Button vymazanieKandidata;
+    private Button vymazatButton;
 
     @FXML
-    private Button zosuboru;
+    private Button extrahovatButton;
 
     private StranyFxModel stranyFxModel;
 
@@ -52,21 +51,22 @@ public class PridanieStranySceneController {
 
     @FXML
     public void initialize() {//nazov je bindnuty na fxmodel nastavenie listu a listener ak nie su values vo veku aj mene naraz neda sa ulozit
-        nazov.textProperty().bindBidirectional(stranyFxModel.nazovProperty());
-        listKandidatov.setItems(stranyFxModel.kandidatiModel());
-        pridaniekKandidata.setDisable(true);
+        nazovTextField.textProperty().bindBidirectional(stranyFxModel.nazovProperty());
+        volebnyPlanTextArea.textProperty().bindBidirectional(stranyFxModel.volebnyPlanProperty());
+        kandidatiListView.setItems(stranyFxModel.kandidatiModel());
+        pridatButton.setDisable(true);
         ChangeListener<String> listener = new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
                                 String oldValue, String newValue) {
-                boolean isNazovEmpty = meno.getText().isEmpty();
-                boolean isVekEmpty = vek.getText().isEmpty();
-                pridaniekKandidata.setDisable(isNazovEmpty || isVekEmpty);
+                boolean isNazovEmpty = menoTextField.getText().isEmpty();
+                boolean isVekEmpty = vekTextField.getText().isEmpty();
+                pridatButton.setDisable(isNazovEmpty || isVekEmpty);
             }
         };
 
-        meno.textProperty().addListener(listener);
-        vek.textProperty().addListener(listener);
+        menoTextField.textProperty().addListener(listener);
+        vekTextField.textProperty().addListener(listener);
 
 
     }
@@ -79,8 +79,8 @@ public class PridanieStranySceneController {
 
     @FXML
     void novyKandidat(ActionEvent event) {
-        String celeMeno= meno.getText().trim();
-        int age= Integer.parseInt(vek.getText().trim());
+        String celeMeno= menoTextField.getText().trim();
+        int age= Integer.parseInt(vekTextField.getText().trim());
         int index = celeMeno.lastIndexOf(' ');
         String krstne="";
         String priezvisko="";
@@ -90,10 +90,10 @@ public class PridanieStranySceneController {
             krstne = celeMeno.substring(0, index).trim();
             priezvisko = celeMeno.substring(index + 1).trim();
         }
-        Kandidat kandidat = new Kandidat(krstne,priezvisko,age);
+        Kandidat kandidat = new Kandidat(null,krstne,priezvisko,age);
         stranyFxModel.kandidatiModel().add(kandidat);
-        meno.clear();
-        vek.clear();
+        menoTextField.clear();
+        vekTextField.clear();
 
 
 
@@ -120,15 +120,16 @@ public class PridanieStranySceneController {
     void ulozStranu(ActionEvent event) {
         Strana strana= stranyFxModel.getStrana();
         StranyDao stranyDao = DaoFactory.INSTANCE.getStranyDao();
+
         novaStrana=stranyDao.save(strana);
-        ulozenie.getScene().getWindow().hide();
+        ulozitButton.getScene().getWindow().hide();
 
 
     }
 
     @FXML
     void vymazKanidata(ActionEvent event) {
-        Kandidat kandidat=listKandidatov.getSelectionModel().getSelectedItem();
+        Kandidat kandidat= kandidatiListView.getSelectionModel().getSelectedItem();
         System.out.print(kandidat);
         if(kandidat !=null){
             stranyFxModel.kandidatiModel().remove(kandidat);

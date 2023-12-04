@@ -32,6 +32,7 @@ public class AdminLayoutSceneController {
 
     @FXML
     void editaciaStrany(ActionEvent event) {
+        editaciastrany() ;
 
     }
 
@@ -41,6 +42,7 @@ public class AdminLayoutSceneController {
     }
     @FXML
     void pridanieUlic(ActionEvent event) {
+        pridanieUlic();
 
     }
 
@@ -84,6 +86,42 @@ public class AdminLayoutSceneController {
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("ADMIN");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void editaciastrany() {
+        try {
+            EditStranyController controller = new EditStranyController();
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("editstrany.fxml"));
+            loader.setController(controller);
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Editstrany");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void pridanieUlic() {
+        try {
+            UliceSceneController controller = new UliceSceneController();
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("ulice.fxml"));
+            loader.setController(controller);
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("ulice");
             stage.show();
 
         } catch (IOException e) {
