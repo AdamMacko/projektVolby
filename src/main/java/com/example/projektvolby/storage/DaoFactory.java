@@ -9,8 +9,8 @@ public enum DaoFactory {
     private KandidatiDao kandidatiDao;
     private StranyDao stranyDao;
     private UliceDao uliceDao;
-    private VolebneListkyDao volebne_listyDao;
-    private VoleniKandidatiDao voleny_kandidatiDao;
+    private VolebneListkyDao VolebnelistyDao;
+    private VoleniKandidatiDao VolenyKandidatiDao;
     private VoliciDao voliciDao;
 
     private JdbcTemplate jdbcTemplate;
@@ -32,11 +32,17 @@ public enum DaoFactory {
 
 
     public KandidatiDao getKandidatiDao() {
+        if (kandidatiDao==null){
+            kandidatiDao= new MysqlKandidatiDao(getJdbcTemplate());
 
+        }
         return kandidatiDao;
     }
 
     public StranyDao getStranyDao() {
+        if(stranyDao==null){
+            stranyDao= new MysqlStranydao(getJdbcTemplate());
+        }
         return stranyDao;
     }
 
@@ -45,11 +51,11 @@ public enum DaoFactory {
     }
 
     public VolebneListkyDao getVolebneListkyDao() {
-        return volebne_listyDao;
+        return VolebnelistyDao;
     }
 
     public VoleniKandidatiDao getVolenyKandidatDao() {
-        return voleny_kandidatiDao;
+        return VolenyKandidatiDao;
     }
 
     public VoliciDao getVoliciDao() {
