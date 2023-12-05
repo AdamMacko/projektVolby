@@ -6,6 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
 public class UliceSceneController {
 
     @FXML
@@ -33,6 +39,9 @@ public class UliceSceneController {
     private Button vymazatButton;
 
     @FXML
+    private Button vymazvsetkoButton;
+
+    @FXML
     void extrahujeUlice(ActionEvent event) {
 
     }
@@ -52,5 +61,13 @@ public class UliceSceneController {
 
     }
 
+    @FXML
+    void vymazeVsetkyUlice(ActionEvent event) {
+
+    }
+
 }
+
+
+
 

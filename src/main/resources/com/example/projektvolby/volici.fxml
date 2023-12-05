@@ -28,10 +28,11 @@
       <TextField fx:id="rodneCisloTextField" layoutX="116.0" layoutY="169.0" onAction="#rodneCisloText" />
       <TextField fx:id="bydliskoTextField" layoutX="116.0" layoutY="204.0" onAction="#bydliskoText" />
       <ListView fx:id="volicListView" layoutX="283.0" layoutY="59.0" onEditStart="#volicList" prefHeight="323.0" prefWidth="299.0" />
-      <Button fx:id="pridatButton" layoutX="212.0" layoutY="248.0" mnemonicParsing="false" onAction="#pridat" text="Pridať" />
-      <Button fx:id="extrahovatButton" layoutX="22.0" layoutY="356.0" mnemonicParsing="false" onAction="#extrahovat" text="Extrahovať zo súboru" />
-      <Button fx:id="ulozitButton" layoutX="214.0" layoutY="356.0" mnemonicParsing="false" onAction="#ulozit" text="Uložiť" />
-      <Button fx:id="vymazatbutton" layoutX="27.0" layoutY="248.0" mnemonicParsing="false" onAction="#vymazat" text="Vymazať" />
+      <Button fx:id="pridatButton" layoutX="13.0" layoutY="256.0" mnemonicParsing="false" onAction="#pridat" text="Pridať" />
+      <Button fx:id="extrahovatButton" layoutX="9.0" layoutY="298.0" mnemonicParsing="false" onAction="#extrahovat" text="Extrahovať zo súboru" />
+      <Button fx:id="ulozitButton" layoutX="221.0" layoutY="356.0" mnemonicParsing="false" onAction="#ulozit" text="Uložiť" />
+      <Button fx:id="vymazatbutton" layoutX="206.0" layoutY="256.0" mnemonicParsing="false" onAction="#vymazat" text="Vymazať" />
       <Button fx:id="spatButton" layoutX="19.0" layoutY="12.0" mnemonicParsing="false" onAction="#spatButton" text="Späť" />
+      <Button fx:id="vymazVsetkoButton" layoutX="11.0" layoutY="356.0" mnemonicParsing="false" onAction="#vymazeVsetkychVolicov" text="Vymazať všetko" />
    </children>
 </AnchorPane>

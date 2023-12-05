@@ -35,6 +35,9 @@ public class EditStranyController {
     private TextArea volebnyPlanTextArea;
 
     @FXML
+    private Button vymazStranuButton;
+
+    @FXML
     private Button vymazatButton;
 
     @FXML
@@ -57,5 +60,9 @@ public class EditStranyController {
 
     }
 
-}
+    @FXML
+    void vymazeStranu(ActionEvent event) {
 
+    }
+
+}

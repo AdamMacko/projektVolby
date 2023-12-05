@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -11,5 +12,7 @@
             <Font size="21.0" />
          </font>
       </Text>
+      <Button fx:id="volenieButton" layoutX="240.0" layoutY="360.0" mnemonicParsing="false" onAction="#zacnevolit" text="Poďme do toho!" />
+      <Text layoutX="26.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tu budu napisane zaklade intrukcie k apke" wrappingWidth="494.13671875" />
    </children>
 </AnchorPane>

@@ -29,35 +29,52 @@ public class AdminLayoutSceneController {
     @FXML
     private Button pridanieUlicButton;
 
+
     @FXML
     void editaciaStrany(ActionEvent event) {
-        editaciastrany();
+        editaciastrany() ;
 
     }
 
     @FXML
     void predbezne(ActionEvent event) {
+        predbezneVysledky();
 
     }
-
-    @FXML
-    void pridanieLudi(ActionEvent event) {
-        openvoliciOkno();
-        ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
-    }
-
-    @FXML
-    void pridanieStrany(ActionEvent event) {
-        pridanieNovejStrany ();
-
-    }
-
     @FXML
     void pridanieUlic(ActionEvent event) {
         pridanieUlic();
 
     }
 
+    @FXML
+    void pridanieLudi(ActionEvent event) {
+        openvoliciOkno();
+
+    }
+
+    @FXML
+    void pridanieStrany(ActionEvent event) {
+        pridanieNovejStrany ();
+    }
+    private void pridanieNovejStrany () {
+        try {
+            PridanieStranySceneController controller = new PridanieStranySceneController();
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("novastrana.fxml"));
+            loader.setController(controller);
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("NOVA STRANA");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void openvoliciOkno() {
         try {
             VoliciScenaController controller = new VoliciScenaController();
@@ -112,18 +129,18 @@ public class AdminLayoutSceneController {
             e.printStackTrace();
         }
     }
-    private void pridanieNovejStrany () {
+    private void predbezneVysledky() {
         try {
-            PridanieStranySceneController controller = new PridanieStranySceneController();
+            PredbezneVysledkySceneController controller = new PredbezneVysledkySceneController();
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("novastrana.fxml"));
+                    getClass().getResource("predbezne.fxml"));
             loader.setController(controller);
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("NOVA STRANA");
+            stage.setTitle("predbezne");
             stage.show();
 
         } catch (IOException e) {

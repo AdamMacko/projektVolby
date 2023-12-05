@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="254.0" layoutY="14.0" text="ULICE">
@@ -26,10 +25,11 @@
       <TextField fx:id="nazovTextField" layoutX="131.0" layoutY="114.0" />
       <TextField fx:id="popisneCisloTextField" layoutX="131.0" layoutY="173.0" />
       <TextField fx:id="pscTextField" layoutX="131.0" layoutY="228.0" />
-      <Button fx:id="vymazatButton" layoutX="25.0" layoutY="280.0" mnemonicParsing="false" onAction="#vymazeObec" text="Vymazať" />
-      <Button fx:id="pridatButton" layoutX="236.0" layoutY="280.0" mnemonicParsing="false" onAction="#pridaUlicu" text="Pridať" />
-      <Button fx:id="ExtrakciaButton" layoutX="13.0" layoutY="359.0" mnemonicParsing="false" onAction="#extrahujeUlice" text="Extrahovať zo súboru" />
-      <Button fx:id="ulozitButton" layoutX="237.0" layoutY="359.0" mnemonicParsing="false" onAction="#uloziUlicu" text="uložiť" />
-      <ListView fx:id="uliceTextField" layoutX="300.0" layoutY="84.0" prefHeight="288.0" prefWidth="283.0" />
+      <Button fx:id="vymazatButton" layoutX="228.0" layoutY="267.0" mnemonicParsing="false" onAction="#vymazeObec" text="Vymazať" />
+      <Button fx:id="pridatButton" layoutX="14.0" layoutY="267.0" mnemonicParsing="false" onAction="#pridaUlicu" text="Pridať" />
+      <Button fx:id="ExtrakciaButton" layoutX="13.0" layoutY="303.0" mnemonicParsing="false" onAction="#extrahujeUlice" text="Extrahovať zo súboru" />
+      <Button fx:id="ulozitButton" layoutX="244.0" layoutY="361.0" mnemonicParsing="false" onAction="#uloziUlicu" text="uložiť" />
+      <ListView fx:id="uliceTextField" layoutX="300.0" layoutY="71.0" prefHeight="303.0" prefWidth="286.0" />
+      <Button fx:id="vymazvsetkoButton" layoutX="13.0" layoutY="360.0" mnemonicParsing="false" onAction="#vymazeVsetkyUlice" text="vymazať všetko" />
    </children>
 </AnchorPane>
