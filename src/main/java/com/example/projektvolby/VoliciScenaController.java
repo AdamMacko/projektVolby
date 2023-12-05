@@ -46,11 +46,7 @@ public class VoliciScenaController {
     @FXML
     private Button vymazatbutton;
 
-    @FXML
-    //spracovanie bydliska
-    void bydliskoText(ActionEvent event) {
 
-    }
 
     @FXML
     //nacitanie zo suboru
@@ -84,8 +80,8 @@ public class VoliciScenaController {
     }
 
     @FXML
-    //tlacidlo pridat
-    void pridat(ActionEvent event) {
+        //spracovanie bydliska
+    void bydliskoText(ActionEvent event) {
 
     }
 
@@ -98,6 +94,12 @@ public class VoliciScenaController {
     @FXML
     //spracovanie rodneho cisla z textu
     void rodneCisloText(ActionEvent event) {
+
+    }
+
+    @FXML
+        //tlacidlo pridat
+    void pridat(ActionEvent event) {
 
     }
 
@@ -145,4 +147,3 @@ public class VoliciScenaController {
     }
 
 }
-

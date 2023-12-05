@@ -6,11 +6,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public enum DaoFactory {
     INSTANCE;
-    private KandidatiDao kandidatiDao;
-    private StranaDao stranyDao;
+    private KandidatDao kandidatDao;
+    private StranaDao stranaDao;
     private UliceDao uliceDao;
-    private VolebneListkyDao volebne_listyDao;
-    private VoleniKandidatiDao voleny_kandidatiDao;
+    private VolebneListkyDao VolebnelistyDao;
+    private VoleniKandidatiDao VolenyKandidatiDao;
     private VolicDao volicDao;
 
     private JdbcTemplate jdbcTemplate;
@@ -31,18 +31,19 @@ public enum DaoFactory {
 
 
 
-    public KandidatiDao getKandidatiDao() {
+    public KandidatDao getKandidatiDao() {
+        if (kandidatDao==null){
+            kandidatDao= new MysqlKandidatDao(getJdbcTemplate());
 
-        return kandidatiDao;
+        }
+        return kandidatDao;
     }
 
     public StranaDao getStranyDao() {
-        if(stranyDao == null){
-          //  stranyDao = new MysqlStranyDao(getJdbcTemplate());
+        if(stranaDao==null){
+            stranaDao= new MysqlStranaDao(getJdbcTemplate());
         }
-
-
-        return stranyDao;
+        return stranaDao;
     }
 
     public UliceDao getUliceDao() {
@@ -50,18 +51,14 @@ public enum DaoFactory {
     }
 
     public VolebneListkyDao getVolebneListkyDao() {
-        return volebne_listyDao;
+        return VolebnelistyDao;
     }
 
     public VoleniKandidatiDao getVolenyKandidatDao() {
-        return voleny_kandidatiDao;
+        return VolenyKandidatiDao;
     }
 
     public VolicDao getVoliciDao() {
-        if (volicDao == null){
-
-        }
-
         return volicDao;
     }
 }
