@@ -1,7 +1,7 @@
 package com.example.projektvolby.storage;
 
 import com.example.projektvolby.Volic;
-import sk.upjs.attender.storage.EntityNotFoundException;
+
 
 import java.util.List;
 

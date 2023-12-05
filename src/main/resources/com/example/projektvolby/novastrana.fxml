@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="208.0" layoutY="14.0" prefHeight="35.0" prefWidth="183.0" text="VYTVORENIE NOVEJ STRANY">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="40.0" prefHeight="35.0" prefWidth="75.0" text="Názov strany:" />
+      <TextField fx:id="nazovTextField" layoutX="89.0" layoutY="45.0" />
+      <ListView fx:id="kandidatiListView" layoutX="14.0" layoutY="94.0" prefHeight="211.0" prefWidth="311.0" />
+      <Label layoutX="14.0" layoutY="75.0" prefHeight="18.0" prefWidth="126.0" text="Kandidáti danej strany:" />
+      <Button fx:id="ulozitButton" layoutX="538.0" layoutY="360.0" mnemonicParsing="false" onAction="#ulozStranu" text="Uložiť" />
+      <Button fx:id="vymazatButton" layoutX="73.0" layoutY="347.0" mnemonicParsing="false" onAction="#vymazKanidata" text="vymazať" />
+      <Button fx:id="pridatButton" layoutX="14.0" layoutY="347.0" mnemonicParsing="false" onAction="#novyKandidat" text="pridať" />
+      <Label layoutX="14.0" layoutY="311.0" prefHeight="35.0" prefWidth="90.0" text="meno kandidáta:" />
+      <Label layoutX="254.0" layoutY="311.0" prefHeight="35.0" prefWidth="38.0" text="vek:" />
+      <TextField fx:id="menoTextField" layoutX="104.0" layoutY="316.0" />
+      <TextField fx:id="vekTextField" layoutX="275.0" layoutY="315.0" prefHeight="26.0" prefWidth="49.0" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Label layoutX="328.0" layoutY="75.0" prefHeight="18.0" prefWidth="126.0" text="Stručný volebný plán:" />
+      <TextArea fx:id="volebnyPlanTextArea" layoutX="328.0" layoutY="93.0" prefHeight="211.0" prefWidth="266.0" />
+      <Button fx:id="extrahovatButton" layoutX="153.0" layoutY="347.0" mnemonicParsing="false" onAction="#extrahujeKandidatov" text="extrahovať zo súboru" />
+   </children>
+</AnchorPane>

@@ -9,7 +9,7 @@ public class Kandidat {
     private com.example.projektvolby.Strana Strana;
 
 
-    public Kandidat(long id, String meno, String priezvisko, int vek) {
+    public Kandidat(Long id, String meno, String priezvisko, int vek) {
         this.id = id;
         this.meno = meno;
         this.priezvisko = priezvisko;
