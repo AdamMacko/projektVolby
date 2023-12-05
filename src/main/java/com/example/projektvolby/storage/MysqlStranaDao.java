@@ -23,8 +23,8 @@ public class MysqlStranaDao implements StranaDao{
     }
     @Override
     public List<Strana> getAll() {
-        String query = "SELECT id, name, study_year FROM subject "
-                + "ORDER BY study_year DESC, name ASC";
+        String query = "SELECT id, nazov, volebny_plan FROM strany "
+               ;
         List<Strana> result = jdbcTemplate.query(query, new RowMapper<Strana>() {
 
             @Override
@@ -75,14 +75,14 @@ public class MysqlStranaDao implements StranaDao{
                             .toList());
 
         } else {	//UPDATE
-            String query = "UPDATE subject SET nazov=?, volebny_plan=? "
+            String query = "UPDATE strany SET nazov=?, volebny_plan=? "
                     + "WHERE id = ?";
             int count = jdbcTemplate.update(query, strana.getNazov(),
                     strana.getVolebny_plan(),
                     strana.getId());
             if (count == 0) {
                 throw new EntityNotFoundException(
-                        "Subject with id " + strana.getId() + " not found");
+                        "Strana s  id " + strana.getId() + " neexistuje");
             }
 //			String deleteStudentsQuery = "DELETE FROM student where subject_id=?";
 //			jdbcTemplate.update(deleteStudentsQuery, subject.getId());

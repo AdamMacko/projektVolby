@@ -78,7 +78,7 @@ public class MysqlKandidatDao implements KandidatDao{
             saved.setId(id);
             return saved;
         } else {	//UPDATE
-            String query = "UPDATE student SET meno=?, priezvisko=?, vek=?, strany_id=? "
+            String query = "UPDATE kanidati SET meno=?, priezvisko=?, vek=?, strany_id=? "
                     + "WHERE id = ?";
             int count = jdbcTemplate.update(query, kandidat.getMeno(),
                     kandidat.getPriezvisko(),
