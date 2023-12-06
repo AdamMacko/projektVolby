@@ -90,7 +90,7 @@ public class PridanieStranySceneController {
             krstne = celeMeno.substring(0, index).trim();
             priezvisko = celeMeno.substring(index + 1).trim();
         }
-        Kandidat kandidat = new Kandidat( null,krstne,priezvisko,age);
+        Kandidat kandidat = new Kandidat( 0L,krstne,priezvisko,age);
         stranyFxModel.kandidatiModel().add(kandidat);
         menoTextField.clear();
         vekTextField.clear();

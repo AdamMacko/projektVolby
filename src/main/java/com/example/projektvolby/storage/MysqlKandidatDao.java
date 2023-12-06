@@ -41,7 +41,7 @@ public class MysqlKandidatDao implements KandidatDao{
     @Override
     public List<Kandidat> getAllByStranaId(long StranaId) {
         String sql = "SELECT id, meno, priezvisko,vek FROM evolby"
-                + " WHERE strana_id = " + StranaId
+                + " WHERE strany_id = " + StranaId
                 + " ORDER BY priezvisko";
         return jdbcTemplate.query(sql, kandidatRM());
     }
@@ -58,7 +58,7 @@ public class MysqlKandidatDao implements KandidatDao{
         Objects.requireNonNull(kandidat.getPriezvisko(),"Priezvisko nemôže byť prázdne");
         Objects.requireNonNull(kandidat.getVek(),"Vek nemôže byť prázdny");
         if (kandidat.getId() == 0) { //INSERT
-            String query = "INSERT INTO kandidati (meno, priezvisko, vek, strana_id) "
+            String query = "INSERT INTO kandidati (meno, priezvisko, vek, strany_id) "
                     + "VALUES (?,?,?,?)";
             GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
             jdbcTemplate.update(new PreparedStatementCreator() {

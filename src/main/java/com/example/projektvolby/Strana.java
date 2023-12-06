@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Strana {
-	private long id;
+	private Long id;
 	private String nazov;
 	private Text volebnyPlan;
 	private List<Kandidat> kandidati;
@@ -16,6 +16,11 @@ public class Strana {
 
 	public Strana(Long id, String nazov, Text volebnyPlan, List<Kandidat> kandidati) {
 		this.id = id;
+		this.nazov = nazov;
+		this.volebnyPlan= volebnyPlan;
+		this.kandidati = kandidati;
+	}
+	public Strana( String nazov, Text volebnyPlan, List<Kandidat> kandidati) {
 		this.nazov = nazov;
 		this.volebnyPlan= volebnyPlan;
 		this.kandidati = kandidati;

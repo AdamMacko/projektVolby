@@ -1,7 +1,7 @@
 package com.example.projektvolby;
 
 public class Kandidat {
-	private long id;
+	private Long id;
     private String meno;
     private String priezvisko;
     private int vek;
@@ -11,6 +11,11 @@ public class Kandidat {
 
     public Kandidat(Long id, String meno, String priezvisko, int vek) {
         this.id = id;
+        this.meno = meno;
+        this.priezvisko = priezvisko;
+        this.vek = vek;
+    }
+    public Kandidat( String meno, String priezvisko, int vek) {
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.vek = vek;
@@ -54,4 +59,9 @@ public class Kandidat {
         this.vek = vek;
     }
 
+    @Override
+    public String toString() {
+        return meno+" "+priezvisko+" vek: "+vek;
+
+    }
 }
