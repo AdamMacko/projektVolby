@@ -1,5 +1,7 @@
 package com.example.projektvolby;
 
+import java.util.Objects;
+
 public class Kandidat {
 	private Long id;
     private String meno;
@@ -63,5 +65,18 @@ public class Kandidat {
     public String toString() {
         return meno+" "+priezvisko+" vek: "+vek;
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Kandidat kandidat = (Kandidat) o;
+        return vek == kandidat.vek && Objects.equals(id, kandidat.id) && Objects.equals(meno, kandidat.meno) && Objects.equals(priezvisko, kandidat.priezvisko) && Objects.equals(Strana, kandidat.Strana);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, meno, priezvisko, vek, Strana);
     }
 }

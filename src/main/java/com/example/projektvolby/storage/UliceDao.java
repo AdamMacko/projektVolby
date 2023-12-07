@@ -9,4 +9,6 @@ import java.util.List;
 public interface UliceDao {
     List<Ulica> getAll();
     Ulica save(Ulica ulica) throws EntityNotFoundException;
+    void delete(long ulicaid) throws EntityNotFoundException ;
+    void deleteall();
 }

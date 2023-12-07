@@ -6,15 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -73,24 +72,62 @@ public class UliceSceneController {
         popisneCisloTextField.clear();
         pscTextField.clear();
 
+
     }
 
     @FXML
     void uloziUlicu(ActionEvent event) {
         for(Ulica ulica:ulicaModel){
             uliceDao.save(ulica);
+            System.out.println(ulicaModel);
         }
 
     }
 
     @FXML
     void vymazeObec(ActionEvent event) {
+        Ulica ulica=uliceListView.getSelectionModel().getSelectedItem();
+        if(ulica.getId() !=0){
+            uliceDao.delete(ulica.getId());
+        }
+        ulicaModel.remove(ulica);
+        System.out.println(ulicaModel);
 
     }
 
     @FXML
     void vymazeVsetkyUlice(ActionEvent event) {
+        if(ConfirmationDialog.show("naozaj chcete vymazat vsetky ulice?Tato operacia sa neda vratit")){
+            uliceDao.deleteall();
+            ulicaModel.clear();
 
+        }
+
+
+    }
+    public class ConfirmationDialog {
+
+        public static boolean show(String message) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+
+            // Customize the buttons
+            ButtonType buttonTypeYes = new ButtonType("Yes");
+            ButtonType buttonTypeNo = new ButtonType("No");
+
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+            // Show the dialog and wait for a button to be clicked
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true); // Set to true if you want the dialog to be always on top
+
+            // Wait for the user's choice
+            boolean result = alert.showAndWait().orElse(buttonTypeNo) == buttonTypeYes;
+
+            return result;
+        }
     }
 
 }

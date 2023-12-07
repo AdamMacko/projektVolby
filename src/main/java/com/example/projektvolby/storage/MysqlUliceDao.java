@@ -78,6 +78,25 @@ public class MysqlUliceDao implements UliceDao {
             return ulica;
         }
     }
+    @Override
+    public void delete(long ulicaid) throws EntityNotFoundException {
+        String query = "DELETE FROM volici WHERE ulica_id=?";
+        jdbcTemplate.update(query,ulicaid);
+        query = "DELETE FROM ulica WHERE id=?";
+        int count = jdbcTemplate.update(query,ulicaid);
+        if (count == 0) {
+            throw new EntityNotFoundException(
+                    "Ulica s id " + ulicaid + " neexistuje");
+        }
+    }
+    @Override
+    public void deleteall() {
+        String query = "DELETE FROM volici WHERE ulica_id IS NOT null";
+        jdbcTemplate.update(query);
+        query="DELETE FROM ulica WHERE id IS NOT null";
+        jdbcTemplate.update(query);
+
+    }
 
 
 }
