@@ -23,7 +23,7 @@
       <Button fx:id="extrakciaButton" layoutX="172.0" layoutY="355.0" mnemonicParsing="false" onAction="#extrahujeKandidatov" text="extrahovať zo súboru" />
       <Button fx:id="aktualizovatButton" layoutX="495.0" layoutY="355.0" mnemonicParsing="false" onAction="#aktualizujeStranu" text="aktualizovať" />
       <Label layoutX="182.0" layoutY="31.0" text="Strana:" />
-      <ComboBox fx:id="StranaComboBox" layoutX="225.0" layoutY="27.0" prefHeight="26.0" prefWidth="174.0" />
+      <ComboBox fx:id="stranaComboBox" layoutX="225.0" layoutY="27.0" prefHeight="26.0" prefWidth="174.0" />
       <Button fx:id="vymazStranuButton" layoutX="471.0" layoutY="27.0" mnemonicParsing="false" onAction="#vymazeStranu" text="vymazať stranu" />
    </children>
 </AnchorPane>

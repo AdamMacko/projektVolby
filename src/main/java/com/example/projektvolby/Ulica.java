@@ -1,19 +1,18 @@
 package com.example.projektvolby;
 
 public class Ulica {
-	private long id;
+	private Long id;
 	private String nazov;
 	private int popisne_cislo;
-	private int PSC;
-	private String obec;
+	private String PSC;
 
 
-	public Ulica(long id, String nazov, int popisne_cislo, int PSC, String obec) {
+	public Ulica(Long id, String nazov, int popisne_cislo, String PSC) {
 		this.id = id;
 		this.nazov = nazov;
 		this.popisne_cislo = popisne_cislo;
 		this.PSC = PSC;
-		this.obec = obec;
+
 	}
 
 	public long getId() {
@@ -40,19 +39,13 @@ public class Ulica {
 		this.popisne_cislo = popisne_cislo;
 	}
 
-	public int getPSC() {
+	public String getPSC() {
 		return PSC;
 	}
 
-	public void setPSC(int PSC) {
+	public void setPSC(String PSC) {
 		this.PSC = PSC;
 	}
 
-	public String getObec() {
-		return obec;
-	}
 
-	public void setObec(String obec) {
-		this.obec = obec;
-	}
 }

@@ -20,7 +20,7 @@ public class StranyFxModel {
     public StranyFxModel(Strana strana) {
         id= strana.getId();
         setNazov(strana.getNazov());
-        setVolebnyPlan(strana.getVolebny_plan().getText());
+        setVolebnyPlan(strana.getVolebny_plan());
         kandidati=FXCollections.observableArrayList(strana.getKandidati());
     }
 
@@ -59,9 +59,16 @@ public class StranyFxModel {
         return kandidati;
     }
     public Strana getStrana() {
-        return new Strana(id, getNazov(), new Text(getVolebnyPlan()), getKandidati());
+        return new Strana(id, getNazov(), getVolebnyPlan(), getKandidati());
     }
 
-
-
+    @Override
+    public String toString() {
+        return "StranyFxModel{" +
+                "id=" + id +
+                ", nazov=" + nazov +
+                ", volebnyPlan=" + volebnyPlan +
+                ", kandidati=" + kandidati +
+                '}';
+    }
 }

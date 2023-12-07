@@ -8,19 +8,19 @@ import java.util.Objects;
 public class Strana {
 	private Long id;
 	private String nazov;
-	private Text volebnyPlan;
+	private String volebnyPlan;
 	private List<Kandidat> kandidati;
 
 	public Strana() {
 	}
 
-	public Strana(Long id, String nazov, Text volebnyPlan, List<Kandidat> kandidati) {
+	public Strana(Long id, String nazov, String volebnyPlan, List<Kandidat> kandidati) {
 		this.id = id;
 		this.nazov = nazov;
 		this.volebnyPlan= volebnyPlan;
 		this.kandidati = kandidati;
 	}
-	public Strana( String nazov, Text volebnyPlan, List<Kandidat> kandidati) {
+	public Strana( String nazov, String volebnyPlan, List<Kandidat> kandidati) {
 		this.nazov = nazov;
 		this.volebnyPlan= volebnyPlan;
 		this.kandidati = kandidati;
@@ -43,11 +43,11 @@ public class Strana {
 		this.nazov = nazov;
 	}
 
-	public Text getVolebny_plan() {
+	public String getVolebny_plan() {
 		return volebnyPlan;
 	}
 
-	public void setVolebny_plan(Text volebny_plan) {
+	public void setVolebny_plan(String volebny_plan) {
 		this.volebnyPlan = volebny_plan;
 	}
 
@@ -72,5 +72,17 @@ public class Strana {
 		return Objects.hash(id);
 	}
 
+	public void setVolebnyPlan(String volebnyPlan) {
+		this.volebnyPlan = volebnyPlan;
+	}
 
+	@Override
+	public String toString() {
+		return "Strana{" +
+				"id=" + id +
+				", nazov='" + nazov + '\'' +
+				", volebnyPlan='" + volebnyPlan + '\'' +
+				", kandidati=" + kandidati +
+				'}';
+	}
 }

@@ -40,7 +40,7 @@ public class MysqlKandidatDao implements KandidatDao{
 
     @Override
     public List<Kandidat> getAllByStranaId(long StranaId) {
-        String sql = "SELECT id, meno, priezvisko,vek FROM evolby"
+        String sql = "SELECT id, meno, priezvisko,vek FROM kandidati"
                 + " WHERE strany_id = " + StranaId
                 + " ORDER BY priezvisko";
         return jdbcTemplate.query(sql, kandidatRM());

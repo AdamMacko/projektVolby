@@ -32,7 +32,7 @@ public class MysqlStranaDao implements StranaDao{
                 long id = rs.getLong("id");
                 String nazov = rs.getString("nazov");
                 String sqlvolebnyPlan = rs.getString("volebny_plan");
-                Text volebnyPlan = new Text(sqlvolebnyPlan);
+                String volebnyPlan = new String(sqlvolebnyPlan);
 //				List<Student> students = studentDao.getAllBySubjectId(id);
                 return new Strana(id, nazov, volebnyPlan, null);
             }
@@ -57,8 +57,8 @@ public class MysqlStranaDao implements StranaDao{
             jdbcTemplate.update(con -> {
                 PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 statement.setString(1, strana.getNazov());
-                Text volebnyPlanText = strana.getVolebny_plan();
-                String volebnyPlanValue =volebnyPlanText.getText();
+                String volebnyPlanText = strana.getVolebny_plan();
+                String volebnyPlanValue =volebnyPlanText;
                 statement.setString(2, volebnyPlanValue);
                 return statement;
             }, keyHolder);
