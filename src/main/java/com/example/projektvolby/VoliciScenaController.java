@@ -49,11 +49,7 @@ public class VoliciScenaController {
     @FXML
     private Button vymazVsetkoButton;
 
-    @FXML
-    //spracovanie bydliska
-    void bydliskoText(ActionEvent event) {
 
-    }
 
     @FXML
     //nacitanie zo suboru
@@ -87,8 +83,8 @@ public class VoliciScenaController {
     }
 
     @FXML
-    //tlacidlo pridat
-    void pridat(ActionEvent event) {
+        //spracovanie bydliska
+    void bydliskoText(ActionEvent event) {
 
     }
 
@@ -101,6 +97,12 @@ public class VoliciScenaController {
     @FXML
     //spracovanie rodneho cisla z textu
     void rodneCisloText(ActionEvent event) {
+
+    }
+
+    @FXML
+        //tlacidlo pridat
+    void pridat(ActionEvent event) {
 
     }
 
@@ -127,10 +129,12 @@ public class VoliciScenaController {
         openAdminlayout();
         ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
     }
+
     @FXML
-    void vymazeVsetkychVolicov(ActionEvent event) {
+    void vymazeVsetkychVolicov(ActionEvent event){
 
     }
+
 
     private void openAdminlayout() {
         try {
@@ -152,4 +156,3 @@ public class VoliciScenaController {
     }
 
 }
-

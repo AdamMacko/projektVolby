@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MysqlUliceDao implements UliceDao{
+public class MysqlUliceDao implements UliceDao {
     private JdbcTemplate jdbcTemplate;
 
     public MysqlUliceDao(JdbcTemplate jdbcTemplate) {

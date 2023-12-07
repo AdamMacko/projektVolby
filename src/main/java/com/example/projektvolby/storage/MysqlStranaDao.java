@@ -23,8 +23,7 @@ public class MysqlStranaDao implements StranaDao{
     }
     @Override
     public List<Strana> getAll() {
-        String query = "SELECT id, nazov, volebny_plan FROM strany "
-               ;
+        String query = "SELECT id, nazov, volebny_plan FROM strany ";
         List<Strana> result = jdbcTemplate.query(query, new RowMapper<Strana>() {
 
             @Override
@@ -33,7 +32,6 @@ public class MysqlStranaDao implements StranaDao{
                 String nazov = rs.getString("nazov");
                 String sqlvolebnyPlan = rs.getString("volebny_plan");
                 String volebnyPlan = new String(sqlvolebnyPlan);
-//				List<Student> students = studentDao.getAllBySubjectId(id);
                 return new Strana(id, nazov, volebnyPlan, null);
             }
         });
@@ -84,11 +82,7 @@ public class MysqlStranaDao implements StranaDao{
                 throw new EntityNotFoundException(
                         "Strana s  id " + strana.getId() + " neexistuje");
             }
-//			String deleteStudentsQuery = "DELETE FROM student where subject_id=?";
-//			jdbcTemplate.update(deleteStudentsQuery, subject.getId());
-//			for (Student student: subject.getStudents()) {
-//				studentDao.save(student, subject.getId());
-//			}
+
             for (Kandidat novyKan: strana.getKandidati()) {
                 if (novyKan.getId() == 0) {
                     kandidatDao.save(novyKan, strana.getId());
