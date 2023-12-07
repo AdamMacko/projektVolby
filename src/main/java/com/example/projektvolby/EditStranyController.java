@@ -62,17 +62,17 @@ public class EditStranyController {
         stranaComboBox.getSelectionModel().selectFirst();
         stranaComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                reloadTable();
+                update();
             }
         });
 
-        reloadTable();
+        update();
 
 
 
 
     }
-    private void reloadTable() {
+    private void update() {
         Strana vybranaStrana=stranaComboBox.getSelectionModel().getSelectedItem();
         List<Kandidat> kandidati=kandidatDao.getAllByStranaId(vybranaStrana.getId());
         kandidatiModel=FXCollections.observableArrayList(kandidati);
@@ -127,6 +127,10 @@ public class EditStranyController {
 
     @FXML
     void vymazeKandidata(ActionEvent event) {
+        Kandidat kandidat=kandidatiListView.getSelectionModel().getSelectedItem();
+        if (kandidat != null){
+            kandidatiModel.remove(kandidat);
+        }
 
     }
 

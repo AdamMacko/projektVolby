@@ -47,6 +47,9 @@ public enum DaoFactory {
     }
 
     public UliceDao getUliceDao() {
+        if(uliceDao==null){
+            uliceDao= new MysqlUliceDao(getJdbcTemplate());
+        }
         return uliceDao;
     }
 

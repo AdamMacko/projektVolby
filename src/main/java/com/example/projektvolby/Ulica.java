@@ -1,5 +1,7 @@
 package com.example.projektvolby;
 
+import java.util.Objects;
+
 public class Ulica {
 	private Long id;
 	private String nazov;
@@ -46,6 +48,25 @@ public class Ulica {
 	public void setPSC(String PSC) {
 		this.PSC = PSC;
 	}
+	public static Ulica clone(Ulica v) {
+		return new Ulica(v.id,v.nazov,v.popisne_cislo,v.PSC);
+	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Ulica ulica = (Ulica) o;
+		return popisne_cislo == ulica.popisne_cislo && Objects.equals(id, ulica.id) && Objects.equals(nazov, ulica.nazov) && Objects.equals(PSC, ulica.PSC);
+	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, nazov, popisne_cislo, PSC);
+	}
+
+	@Override
+	public String toString() {
+		return nazov +" "+popisne_cislo+" PSC: " + PSC;
+	}
 }

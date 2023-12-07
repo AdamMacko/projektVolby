@@ -29,7 +29,7 @@
       <Button fx:id="pridatButton" layoutX="14.0" layoutY="267.0" mnemonicParsing="false" onAction="#pridaUlicu" text="Pridať" />
       <Button fx:id="ExtrakciaButton" layoutX="13.0" layoutY="303.0" mnemonicParsing="false" onAction="#extrahujeUlice" text="Extrahovať zo súboru" />
       <Button fx:id="ulozitButton" layoutX="244.0" layoutY="361.0" mnemonicParsing="false" onAction="#uloziUlicu" text="uložiť" />
-      <ListView fx:id="uliceTextField" layoutX="300.0" layoutY="71.0" prefHeight="303.0" prefWidth="286.0" />
+      <ListView fx:id="uliceListView" layoutX="300.0" layoutY="71.0" prefHeight="303.0" prefWidth="286.0" />
       <Button fx:id="vymazvsetkoButton" layoutX="13.0" layoutY="360.0" mnemonicParsing="false" onAction="#vymazeVsetkyUlice" text="vymazať všetko" />
    </children>
 </AnchorPane>

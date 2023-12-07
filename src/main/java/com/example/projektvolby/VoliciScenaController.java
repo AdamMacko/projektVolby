@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class VoliciScenaController {
+    @FXML
+    private TextField PSCTextField;
 
     @FXML
     private TextField bydliskoTextField;

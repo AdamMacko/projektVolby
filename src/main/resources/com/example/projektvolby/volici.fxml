@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,14 +20,14 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Text layoutX="22.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meno" />
-      <Text layoutX="22.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priezvisko" />
-      <Text layoutX="22.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rodné č." />
-      <Text layoutX="22.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trvalé bydlisko" />
-      <TextField fx:id="menoTextField" layoutX="116.0" layoutY="99.0" onAction="#menoText" />
-      <TextField fx:id="priezviskoTextFiled" layoutX="116.0" layoutY="134.0" onAction="#priezviskoText" />
-      <TextField fx:id="rodneCisloTextField" layoutX="116.0" layoutY="169.0" onAction="#rodneCisloText" />
-      <TextField fx:id="bydliskoTextField" layoutX="116.0" layoutY="204.0" onAction="#bydliskoText" />
+      <Text layoutX="17.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meno" />
+      <Text layoutX="13.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priezvisko" />
+      <Text layoutX="10.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rodné č." />
+      <Text layoutX="8.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trvalé bydlisko" />
+      <TextField fx:id="menoTextField" layoutX="127.0" layoutY="85.0" onAction="#menoText" />
+      <TextField fx:id="priezviskoTextFiled" layoutX="127.0" layoutY="114.0" onAction="#priezviskoText" />
+      <TextField fx:id="rodneCisloTextField" layoutX="127.0" layoutY="144.0" onAction="#rodneCisloText" />
+      <TextField fx:id="bydliskoTextField" layoutX="127.0" layoutY="178.0" onAction="#bydliskoText" />
       <ListView fx:id="volicListView" layoutX="283.0" layoutY="59.0" onEditStart="#volicList" prefHeight="323.0" prefWidth="299.0" />
       <Button fx:id="pridatButton" layoutX="13.0" layoutY="256.0" mnemonicParsing="false" onAction="#pridat" text="Pridať" />
       <Button fx:id="extrahovatButton" layoutX="9.0" layoutY="298.0" mnemonicParsing="false" onAction="#extrahovat" text="Extrahovať zo súboru" />
@@ -34,5 +35,7 @@
       <Button fx:id="vymazatbutton" layoutX="206.0" layoutY="256.0" mnemonicParsing="false" onAction="#vymazat" text="Vymazať" />
       <Button fx:id="spatButton" layoutX="19.0" layoutY="12.0" mnemonicParsing="false" onAction="#spatButton" text="Späť" />
       <Button fx:id="vymazVsetkoButton" layoutX="11.0" layoutY="356.0" mnemonicParsing="false" onAction="#vymazeVsetkychVolicov" text="Vymazať všetko" />
+      <Label layoutX="12.0" layoutY="212.0" text="PSC" />
+      <TextField fx:id="PSCTextField" layoutX="127.0" layoutY="208.0" />
    </children>
 </AnchorPane>
