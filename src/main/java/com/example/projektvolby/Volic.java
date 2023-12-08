@@ -19,6 +19,11 @@ public class Volic {
         this.ulicaId = ulicaId;
         this.dochadzka = dochadzka;
     }
+    public Volic (String meno,String priezvisko, String cOP){
+        this.meno = meno;
+        this.priezvisko = priezvisko;
+        this.cOP = cOP;
+    }
 
     public String getcOP() {
         return cOP;
@@ -70,14 +75,7 @@ public class Volic {
 
     @Override
     public String toString() {
-        return "Volic{" +
-                "id=" + id +
-                ", meno='" + meno + '\'' +
-                ", priezvisko='" + priezvisko + '\'' +
-                ", cOP='" + cOP + '\'' +
-                ", dochadzka=" + dochadzka +
-                ", ulica='" + ulicaId + '\'' +
-                '}';
+        return meno +" " +  priezvisko + " " + cOP;
     }
 
     public static Volic clone(Volic v) {

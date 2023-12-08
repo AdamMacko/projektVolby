@@ -78,6 +78,11 @@ public class Strana {
 
 	@Override
 	public String toString() {
-		return nazov;
+		return "Strana{" +
+				"id=" + id +
+				", nazov='" + nazov + '\'' +
+				", volebnyPlan='" + volebnyPlan + '\'' +
+				", kandidati=" + kandidati +
+				'}';
 	}
 }

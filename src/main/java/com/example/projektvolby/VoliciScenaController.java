@@ -4,26 +4,28 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class VoliciScenaController {
     @FXML
-    private TextField PSCTextField;
+    private TextField bydliskoTextField;
 
     @FXML
-    private TextField bydliskoTextField;
-    @FXML
-    private Button spatButton;
+    private TextField cisloOPTextField;
+
     @FXML
     private Button extrahovatButton;
 
@@ -37,7 +39,7 @@ public class VoliciScenaController {
     private TextField priezviskoTextFiled;
 
     @FXML
-    private TextField rodneCisloTextField;
+    private Button spatButton;
 
     @FXML
     private Button ulozitButton;
@@ -46,60 +48,78 @@ public class VoliciScenaController {
     private ListView<Volic> volicListView;
 
     @FXML
-    private Button vymazatbutton;
-
-    @FXML
     private Button vymazVsetkoButton;
 
+    @FXML
+    private Button vymazatbutton;
 
 
+    private VolicFxModel volicFxModel;
+
+    public VoliciScenaController(){
+        volicFxModel=new VolicFxModel();
+    }
+    public VoliciScenaController(Volic volic){
+        volicFxModel=new VolicFxModel(volic);
+    }
+    @FXML
+    public void initialize() {
+        menoTextField.textProperty().bindBidirectional(volicFxModel.menoProperty());
+        priezviskoTextFiled.textProperty().bindBidirectional(volicFxModel.priezviskoProperty());
+        cisloOPTextField.textProperty().bindBidirectional(volicFxModel.cOPProperty());
+        volicListView.setItems(volicFxModel.volic());
+
+    }
     @FXML
     //nacitanie zo suboru
     void extrahovat(ActionEvent event) {
-        System.out.println("ahoj");
-        File voliciZoznam = new File("volici.csv");
-        nacitajVolicov(voliciZoznam);
+        if(! volicFxModel.volic().isEmpty()) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Nahradenie volicov z exportu");
+            alert.setHeaderText("Nahradenie volicov z exportu");
+            alert.setContentText("Volici, ktorí sú doteraz na zozname, "
+                    + "budú nahradení volicmi z CSV súboru.");
 
-    }
-
-    public List<Volic>  nacitajVolicov(File file){
-    try (Scanner sc = new Scanner(file,"utf-8")){
-        while(sc.hasNextLine()){
-            String line = sc.nextLine();
-            System.out.println(line);
-
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() != ButtonType.OK){
+                return;
+            }
         }
-
-    } catch (FileNotFoundException e) {
-            System.err.println("Export sa nenašiel");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("CSV Files", "*.csv"));
+        File selectedFile = fileChooser.showOpenDialog(volicListView.getScene().getWindow());
+        if (selectedFile != null) {
+            System.out.println("Vybratý súbor: " + selectedFile);
+            try {
+                List<Volic> students = nacitajzCSV(selectedFile);
+                volicFxModel.volic().setAll(students);
+            } catch (FileNotFoundException e) {
+                // nenastane
+                e.printStackTrace();
+            }
         }
-
-
-        return null;
     }
 
-    @FXML
-    //spracovanie mena
-    void menoText(ActionEvent event) {
 
-    }
+    private List<Volic> nacitajzCSV(File file) throws FileNotFoundException  {
+        Scanner scanner = new Scanner(file, "utf-8");
+        List<Volic> volici = new ArrayList<>();
+        String[]udaje = new String[4];
+        int meno = 0;
+        int priezvisko = 1;
+        int cisloOP = 2;
 
-    @FXML
-        //spracovanie bydliska
-    void bydliskoText(ActionEvent event) {
 
-    }
 
-    @FXML
-    //spracovanie priezviska
-    void priezviskoText(ActionEvent event) {
-
-    }
-
-    @FXML
-    //spracovanie rodneho cisla z textu
-    void rodneCisloText(ActionEvent event) {
-
+        while(scanner.hasNextLine()) {
+            scanner.nextLine();
+            String vcelku = scanner.nextLine();
+            udaje = vcelku.split(";");
+            Volic volic = new Volic(udaje[0],udaje[1],udaje[2]);
+            volici.add(volic);
+        }
+        return volici;
     }
 
     @FXML

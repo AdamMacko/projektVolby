@@ -26,6 +26,7 @@ public class PrihlasenieScenaController {
     @FXML
     private Button prihlasenieButton;
 
+
     @FXML
     void prihlasenie(ActionEvent event) {
 

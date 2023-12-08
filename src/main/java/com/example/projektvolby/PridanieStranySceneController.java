@@ -94,11 +94,6 @@ public class PridanieStranySceneController {
         stranyFxModel.kandidatiModel().add(kandidat);
         menoTextField.clear();
         vekTextField.clear();
-
-
-
-
-
     }
 
     @FXML

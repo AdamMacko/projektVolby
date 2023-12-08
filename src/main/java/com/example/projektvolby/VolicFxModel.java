@@ -9,12 +9,14 @@ public class VolicFxModel {
     private StringProperty meno = new SimpleStringProperty();
     private StringProperty priezvisko = new SimpleStringProperty();
     private StringProperty cOP = new SimpleStringProperty();
+    private StringProperty trvaleBydlisko = new SimpleStringProperty();
+    private StringProperty psc = new SimpleStringProperty();
     private BooleanProperty dochadzka = new SimpleBooleanProperty();
-    private ObservableList<Kandidat> kandidat;
+    private ObservableList<Volic> volic;
 
     public VolicFxModel() {
 
-        kandidat = FXCollections.observableArrayList();
+        volic= FXCollections.observableArrayList();
     }
 
     public VolicFxModel(Volic volic) {
@@ -45,5 +47,23 @@ public class VolicFxModel {
         this.cOP.set(cOP);
     }
 
+    public StringProperty cOP() {
+        return cOP;
+    }
+    public BooleanProperty dochadzka(){return dochadzka;}
 
+    public ObservableList <Volic>volic(){return volic;}
+
+
+    public Property<String> menoProperty() {
+        return meno;
+    }
+
+    public Property<String> priezviskoProperty() {
+        return priezvisko;
+    }
+
+    public Property<String> cOPProperty() {
+        return cOP;
+    }
 }
