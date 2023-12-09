@@ -38,7 +38,7 @@ public class PrihlasenieScenaController {
 				openAdminlayout();
 				((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
 			}
-		VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+		VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
 		boolean isHesloValid = volicDao.overHeslo(heslo);
 			 if (isHesloValid){
 				openInstrukcieOkno();

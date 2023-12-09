@@ -1,6 +1,4 @@
 package com.example.projektvolby.storage;
 
-public interface VolebneListkyDao {
-
-    
+public interface VolenyKandidatDao {
 }

@@ -10,12 +10,12 @@ import java.sql.*;
 import java.util.List;
 import java.util.Objects;
 
-public class MysqlVolicDao implements VolicDao {
+public class MysqlVoliciDao implements VolicDao {
     private JdbcTemplate jdbcTemplate;
 
 
 
-    public MysqlVolicDao(org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
+    public MysqlVoliciDao(org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -68,7 +68,7 @@ public class MysqlVolicDao implements VolicDao {
                     statement.setString(2, volic.getPriezvisko());
                     statement.setString(3, volic.getcOP());
                     statement.setString(4, "9"); // assuming dochadzka is a string representing '9'
-                    statement.setString(5, "1"); // assuming ulica_id is a string representing '3'
+                    statement.setString(5, "5"); // assuming ulica_id is a string representing '3'
                     return statement;
                 }
             }, keyHolder);

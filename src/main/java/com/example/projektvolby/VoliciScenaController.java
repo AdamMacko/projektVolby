@@ -74,7 +74,7 @@ public class VoliciScenaController {
         priezviskoTextFiled.textProperty().bindBidirectional(volicFxModel.priezviskoProperty());
         cisloOPTextField.textProperty().bindBidirectional(volicFxModel.cOPProperty());
         volicListView.setItems(volicFxModel.volic());
-        VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+        VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
         List<Volic> existingVoters = volicDao.getAll(); // Získanie všetkých voličov z databázy
         volicFxModel.volic().addAll(existingVoters); // Pridanie existujúcich voličov do ObservableList
         volicListView.setCellFactory(param -> new ListCell<Volic>() {
@@ -172,7 +172,7 @@ public class VoliciScenaController {
     //tlacidlo ulozit
     void ulozit(ActionEvent event) {
         Volic volic= volicFxModel.getVolic();
-        VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+        VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
         novyVolic=volicDao.save(volic);
         ulozitButton.getScene().getWindow().hide();
     }
@@ -188,7 +188,7 @@ public class VoliciScenaController {
     void vymazat(ActionEvent event) {
         Volic volic = volicListView.getSelectionModel().getSelectedItem();
         if (volic != null) {
-            VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+            VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
             try {
                 volicDao.delete(volic.getId()); // Vymazanie z databázy podľa ID
                 volicFxModel.volic().remove(volic); // Odstránenie z používateľského rozhrania
@@ -208,7 +208,7 @@ public class VoliciScenaController {
 
     @FXML
     void vymazeVsetkychVolicov(ActionEvent event){
-        VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+        VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
         volicDao.deleteAll(); // Volanie metódy na vymazanie celej tabuľky
 
         // Následne môžeme aktualizovať používateľské rozhranie, vyčistením ListView
