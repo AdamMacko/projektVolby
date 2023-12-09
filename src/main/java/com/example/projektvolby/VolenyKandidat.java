@@ -12,6 +12,9 @@ public class VolenyKandidat {
 		this.kandidatId=kandidatId;
 		this.listokId=listokId;
 	}
+	public VolenyKandidat() {
+
+	}
 	public static VolenyKandidat clone(VolenyKandidat k) {
 		return new VolenyKandidat(k.id,k.kandidatId,k.listokId);
 	}

@@ -6,6 +6,10 @@ public class VolebnyListok {
 	private Long id;
 	private Long stranaId;
 
+	public VolebnyListok() {
+
+	}
+
 	public VolebnyListok(Long id, Long stranaId) {
 		this.id = id;
 		this.stranaId=stranaId;

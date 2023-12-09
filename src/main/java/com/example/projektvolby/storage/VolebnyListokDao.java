@@ -11,7 +11,9 @@ public interface VolebnyListokDao {
     List<VolebnyListok> getAll();
     List<VolebnyListok> getAllByStranaId(long StranaId);
 
-    VolebnyListok save(VolebnyListok volebnyListok, long StranaId) throws EntityNotFoundException;
+    VolebnyListok save(VolebnyListok volebnyListok) throws EntityNotFoundException;
+
+    public Long najvacsieId();
 
     
 }

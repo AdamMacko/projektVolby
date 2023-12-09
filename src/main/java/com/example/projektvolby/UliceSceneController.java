@@ -114,8 +114,8 @@ public class UliceSceneController {
             alert.setContentText(message);
 
             // Customize the buttons
-            ButtonType buttonTypeYes = new ButtonType("Yes");
-            ButtonType buttonTypeNo = new ButtonType("No");
+            ButtonType buttonTypeYes = new ButtonType("Ano");
+            ButtonType buttonTypeNo = new ButtonType("Nie");
 
             alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 

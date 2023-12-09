@@ -24,7 +24,7 @@ public class MysqlVolebnyListokDao implements VolebnyListokDao{
             @Override
             public VolebnyListok mapRow(ResultSet rs, int rowNum) throws SQLException {
                 long id = rs.getLong("id");
-                long stranaId = rs.getLong("id");
+                long stranaId = rs.getLong("strany_id");
 
 
 
@@ -47,7 +47,8 @@ public class MysqlVolebnyListokDao implements VolebnyListokDao{
         return jdbcTemplate.query(sql, volebnyListokRM());
     }
     @Override
-    public VolebnyListok save(VolebnyListok volebnyListok, long StranaId) throws EntityNotFoundException {
+    public VolebnyListok save(VolebnyListok volebnyListok) throws EntityNotFoundException {
+        Objects.requireNonNull(volebnyListok, "Volebny listok nemoze byt prazdny");
         Objects.requireNonNull(volebnyListok.getStranaId(),"Strana nemoze byt nulova");
         if (volebnyListok.getId() == 0) { //INSERT
             String query = "INSERT INTO volebny_listok (strany_id) "
@@ -58,7 +59,7 @@ public class MysqlVolebnyListokDao implements VolebnyListokDao{
                 @Override
                 public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                     PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                    statement.setLong(1, StranaId);
+                    statement.setLong(1, volebnyListok.getStranaId());
                     return statement;
                 }
             }, keyHolder);
@@ -70,7 +71,7 @@ public class MysqlVolebnyListokDao implements VolebnyListokDao{
             String query = "UPDATE volebny_listok SET strany_id=? "
                     + "WHERE id = ?";
             int count = jdbcTemplate.update(query,
-                    StranaId,
+                    volebnyListok.getStranaId(),
                     volebnyListok.getId());
             if (count == 0) {
                 throw new EntityNotFoundException(
@@ -78,6 +79,13 @@ public class MysqlVolebnyListokDao implements VolebnyListokDao{
             }
             return volebnyListok;
         }
+    }
+    @Override
+    public Long najvacsieId(){
+        String query = "SELECT MAX(id) FROM volebny_listok ";
+        Long maxId = jdbcTemplate.queryForObject(query, Long.class);
+        return  maxId;
+
     }
 
 

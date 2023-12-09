@@ -53,11 +53,17 @@ public enum DaoFactory {
         return uliceDao;
     }
 
-    public VolebnyListokDao getVolebneListkyDao() {
+    public VolebnyListokDao getVolebnyListokDao() {
+        if(volebnyListokDao==null){
+            volebnyListokDao= new MysqlVolebnyListokDao(getJdbcTemplate());
+        }
         return volebnyListokDao;
     }
 
     public VolenyKandidatDao getVolenyKandidatDao() {
+        if(volenyKandidatDao==null){
+            volenyKandidatDao= new MysqlVolenyKandidatDao(getJdbcTemplate());
+        }
         return volenyKandidatDao;
     }
 

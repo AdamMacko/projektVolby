@@ -2,6 +2,8 @@ package com.example.projektvolby;
 
 import com.example.projektvolby.storage.DaoFactory;
 import com.example.projektvolby.storage.StranaDao;
+import com.example.projektvolby.storage.VolebnyListokDao;
+import com.example.projektvolby.storage.VolenyKandidatDao;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -15,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Modality;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -45,18 +48,22 @@ public class VolenieSceneController {
     private StranyFxModel stranafxmodel;
     private ObservableList<Strana> stranyfxmodel;
 
+    private VolebnyListokDao volebnyListokDao=DaoFactory.INSTANCE.getVolebnyListokDao();
+
+    private VolenyKandidatDao volenyKandidatDao=DaoFactory.INSTANCE.getVolenyKandidatDao();
+
 
     private StranaDao stranadao= DaoFactory.INSTANCE.getStranyDao();
 
     private Map<Kandidat, BooleanProperty> kandidatiMapa = new LinkedHashMap<>();
+    private Long listokId;
+    private VolebnyListok volebnyListok=new VolebnyListok();
+    private VolenyKandidat volenyKandidat=new VolenyKandidat();
 
-    @FXML
-    void odvolenieVolica(ActionEvent event) {
 
-        ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
-        prihlasenie();
 
-    }
+
+
     @FXML
     public void initialize() {
         volebnyPlanTextArea.setEditable(false);
@@ -77,6 +84,7 @@ public class VolenieSceneController {
 
     }
     private void update() {
+        vyberKandidatovFlowPane.setDisable(true);
         Strana strana=vyberStranyComboBox.getSelectionModel().getSelectedItem();
         List<Kandidat> kandidati=strana.getKandidati();
         for(Kandidat kandidat :kandidati){
@@ -95,6 +103,58 @@ public class VolenieSceneController {
 
     @FXML
     void zvoliStranu(ActionEvent event) {
+        if(UliceSceneController.ConfirmationDialog.show("naozaj chceťe zvoliť túto stranu?Táto operácia sa nedá vrátiť")){
+            zvolitStranuButton.setDisable(true);
+            Strana strana=vyberStranyComboBox.getSelectionModel().getSelectedItem();
+            vyberStranyComboBox.setDisable(true);
+            vyberKandidatovFlowPane.setDisable(false);
+            volebnyListok.setId(0L);
+            volebnyListok.setStranaId(strana.getId());
+            volebnyListokDao.save(volebnyListok);
+            listokId=volebnyListokDao.najvacsieId();
+            System.out.println(listokId);
+        }
+
+
+
+
+    }
+    @FXML
+    void odvolenieVolica(ActionEvent event) {
+        List<Kandidat> kandidati=new ArrayList<>();
+        int pocet=0;
+        for (Map.Entry<Kandidat, BooleanProperty> entry : kandidatiMapa.entrySet()) {
+            if (entry.getValue().get()){
+                kandidati.add(entry.getKey());
+                pocet+=1;
+            }
+            System.out.println(pocet);
+            System.out.println(kandidati);
+        }
+
+        if(pocet>4){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Upozornenie");
+            alert.setHeaderText("Vela zvolených");
+            alert.setContentText("Zvolili ste viac kandidátov ako je povelené");
+            alert.showAndWait();
+
+        }else{
+            for (Kandidat kandidat :kandidati){
+                volenyKandidat=new VolenyKandidat(0L,kandidat.getId(),listokId);
+                volenyKandidatDao.save(volenyKandidat);
+            }
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Odvolené");
+            alert.setHeaderText("Gratulujem!");
+            alert.setContentText("Gratulujem,práve ste úspešne odvolili môžťe odísť");
+            alert.showAndWait();
+            ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
+            prihlasenie();
+        }
+
+
+
 
     }
     private void prihlasenie () {
@@ -113,6 +173,30 @@ public class VolenieSceneController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public class ConfirmationDialog {
+
+        public static boolean show(String message) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+
+            // Customize the buttons
+            ButtonType buttonTypeYes = new ButtonType("Ano");
+            ButtonType buttonTypeNo = new ButtonType("Nie");
+
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+            // Show the dialog and wait for a button to be clicked
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true); // Set to true if you want the dialog to be always on top
+
+            // Wait for the user's choice
+            boolean result = alert.showAndWait().orElse(buttonTypeNo) == buttonTypeYes;
+
+            return result;
         }
     }
 
