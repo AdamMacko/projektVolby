@@ -46,6 +46,13 @@ public enum DaoFactory {
         return stranaDao;
     }
 
+    public VolicDao getVolicDao() {
+        if(volicDao == null){
+            volicDao= new MysqlVolicDao(getJdbcTemplate());
+        }
+        return volicDao;
+    }
+
     public UliceDao getUliceDao() {
         if(uliceDao==null){
             uliceDao= new MysqlUliceDao(getJdbcTemplate());
@@ -53,18 +60,13 @@ public enum DaoFactory {
         return uliceDao;
     }
 
-    public VolebneListkyDao getVolebneListkyDao() {
-        return VolebnelistyDao;
-    }
+    //public VolebneListkyDao getVolebneListkyDao() {
+     //   return VolebnelistyDao;
+   // }
 
-    public VoleniKandidatiDao getVolenyKandidatDao() {
-        return VolenyKandidatiDao;
-    }
+   // public VoleniKandidatiDao getVolenyKandidatDao() {
+        //return VolenyKandidatiDao;
+    //}
 
-    public VolicDao getVoliciDao() {
-        if(volicDao == null){
-            volicDao= new MysqlVoliciDao(getJdbcTemplate());
-        }
-        return volicDao;
-    }
+
 }

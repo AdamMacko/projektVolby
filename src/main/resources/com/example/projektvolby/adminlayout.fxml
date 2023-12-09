@@ -5,10 +5,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="pridaniaStranyButton" layoutX="178.0" layoutY="104.0" mnemonicParsing="false" onAction="#pridanieStrany" prefHeight="39.0" prefWidth="244.0" text="Pridať stranu" />
-      <Button fx:id="editaciaStranyButton" layoutX="178.0" layoutY="160.0" mnemonicParsing="false" onAction="#editaciaStrany" prefHeight="39.0" prefWidth="244.0" text="Editovať stranu" />
-      <Button fx:id="pridanieLudiButton" layoutX="178.0" layoutY="269.0" mnemonicParsing="false" onAction="#pridanieLudi" prefHeight="39.0" prefWidth="244.0" text="Pridať voliča" />
-      <Button fx:id="predbezneButton" layoutX="178.0" layoutY="212.0" mnemonicParsing="false" onAction="#predbezne" prefHeight="39.0" prefWidth="244.0" text="Zobraziť výsledok" />
-      <Button fx:id="pridanieUlicButton" layoutX="178.0" layoutY="324.0" mnemonicParsing="false" onAction="#pridanieUlic" prefHeight="39.0" prefWidth="244.0" text="Pridať ulicu" />
+      <Button fx:id="pridaniaStranyButton" layoutX="178.0" layoutY="104.0" mnemonicParsing="false" onAction="#pridanieStrany" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Pridať stranu" />
+      <Button fx:id="editaciaStranyButton" layoutX="178.0" layoutY="160.0" mnemonicParsing="false" onAction="#editaciaStrany" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Editovať stranu" />
+      <Button fx:id="pridanieLudiButton" layoutX="178.0" layoutY="269.0" mnemonicParsing="false" onAction="#pridanieLudi" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Pridať voliča" />
+      <Button fx:id="predbezneButton" layoutX="178.0" layoutY="212.0" mnemonicParsing="false" onAction="#predbezne" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Zobraziť výsledok" />
+      <Button fx:id="pridanieUlicButton" layoutX="178.0" layoutY="324.0" mnemonicParsing="false" onAction="#pridanieUlic" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Pridať ulicu" />
    </children>
 </AnchorPane>

@@ -1,0 +1,21 @@
+/* styles.css */
+
+/* Základné štýly pre ListView */
+.list-view {
+    -fx-background-color: lightgray; /* Farba pozadia ListView */
+    -fx-font-size: 14px; /* Veľkosť písma v ListView */
+    /* Ďalšie štýly podľa potreby */
+}
+
+/* Štýly pre vybrané položky v ListView */
+.list-view .list-cell:selected {
+    -fx-background-color: dodgerblue; /* Farba pozadia vybranej bunky */
+    -fx-text-fill: white; /* Farba textu vo vybranej bunke */
+    /* Ďalšie štýly pre vybrané položky */
+}
+
+/* Štýly pre všetky bunky v ListView */
+.list-view .list-cell {
+    -fx-padding: 5px 10px; /* Odstup textu vo vnútri bunky */
+    /* Ďalšie štýly pre všetky bunky */
+}

@@ -1,0 +1,16 @@
+.button {
+    -fx-background-color: #9fceed; /* Farba pozadia tlačidla */
+    -fx-effect: dropshadow(gaussian, #000000, 5, 0, 2, 2); /* Efekt tieňa */
+}
+
+.button:hover {
+    -fx-background-color: #90c2e3; /* Farba pozadia po najazdení myšou */
+}
+
+.button:pressed {
+    -fx-background-color: #1f618d; /* Farba pozadia po stlačení */
+}
+
+.button:disabled {
+    -fx-opacity: 0.7; /* Priehľadnosť pre vypnuté tlačidlá */
+}

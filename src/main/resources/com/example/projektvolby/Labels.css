@@ -1,0 +1,6 @@
+/* Štýly pre Label */
+Label {
+    -fx-font-size: 18px; /* Veľkosť písma */
+    -fx-text-fill: #333; /* Farba textu */
+    -fx-font-family: "Arial"; /* Font rodina */
+}

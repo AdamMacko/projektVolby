@@ -11,4 +11,5 @@ public interface UliceDao {
     Ulica save(Ulica ulica) throws EntityNotFoundException;
     void delete(long ulicaid) throws EntityNotFoundException ;
     void deleteall();
+    int getIdByPSC(String psc);
 }

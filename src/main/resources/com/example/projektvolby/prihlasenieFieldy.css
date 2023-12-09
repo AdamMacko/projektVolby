@@ -1,0 +1,20 @@
+/* Základné štýly pre TextField */
+#menoTextField,
+#hesloTextField {
+    -fx-background-color: #f5f5f5; /* Farba pozadia */
+    -fx-border-color: #ccc; /* Farba ohraničenia */
+    -fx-border-radius: 5; /* Zakrivenie rohov */
+    -fx-padding: 5; /* Odstup vnútri poľa */
+}
+
+/* Štýly pre TextField po zameraní */
+#menoTextField:focused,
+#hesloTextField:focused {
+    -fx-border-color: #4d90fe; /* Farba ohraničenia pri zameraní */
+    -fx-scale-x: 1.02; /* Zväčšenie šírky */
+    -fx-scale-y: 1.02; /* Zväčšenie výšky */
+    -fx-translate-x: 1px; /* Posunutie vpravo */
+    -fx-translate-y: 1px; /* Posunutie nadol */
+    -fx-effect: dropshadow( gaussian , rgba(105, 176, 228, 0.2) , 50, 0.0 , 0 , 1 );
+    /* Pridanie tieňa */
+}

@@ -11,76 +11,88 @@ public class Volic {
     private Long ulicaId;
 
 
-    public Volic(Long id, String meno, String priezvisko, String cOP,boolean dochadzka,Long ulicaId) {
+
+    public Volic(Long id,String meno, String priezvisko, String cOP, boolean dochadzka, Long ulicaId) {
         this.id = id;
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.cOP = cOP;
-        this.ulicaId = ulicaId;
         this.dochadzka = dochadzka;
+        this.ulicaId= ulicaId;
+
     }
-    public Volic (String meno,String priezvisko, String cOP){
+
+
+    public Volic (String meno, String priezvisko, String cOP){
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.cOP = cOP;
+
     }
 
-    public String getcOP() {
-        return cOP;
+    public Long getUlicaId() {
+        return ulicaId;
     }
 
-    public void setcOP(String cOP) {
-        this.cOP = cOP;
+    public void setUlicaId(Long ulicaId) {
+        this.ulicaId = ulicaId;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getMeno() {
         return meno;
-    }
-
-    public void setMeno(String meno) {
-        this.meno = meno;
     }
 
     public String getPriezvisko() {
         return priezvisko;
     }
 
-    public void setPriezvisko(String priezvisko) {
-        this.priezvisko = priezvisko;
+    public String getcOP() {
+        return cOP;
     }
 
     public boolean isDochadzka() {
         return dochadzka;
     }
 
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setMeno(String meno) {
+        this.meno = meno;
+    }
+
+    public void setPriezvisko(String priezvisko) {
+        this.priezvisko = priezvisko;
+    }
+
+    public void setcOP(String cOP) {
+        this.cOP = cOP;
+    }
+
     public void setDochadzka(boolean dochadzka) {
         this.dochadzka = dochadzka;
     }
 
-    public Long getUlica() {
-        return ulicaId;
-    }
 
-    public void setUlica(Long ulicaId) {
-        this.ulicaId = ulicaId;
+
+
+    public static Volic clone(Volic v) {
+        return new Volic(v.id,v.meno,v.priezvisko,v.cOP,v.dochadzka, v.ulicaId);
     }
 
     @Override
     public String toString() {
-        return meno +" " +  priezvisko + " " + cOP;
+        return
+                "meno='" + meno + '\'' +
+                ", priezvisko='" + priezvisko + '\'' +
+                ", cOP='" + cOP + '\'' ;
+
     }
-
-    public static Volic clone(Volic v) {
-        return new Volic(v.id,v.meno,v.priezvisko,v.cOP,v.dochadzka,v.getUlica());
-    }
-
-
 }

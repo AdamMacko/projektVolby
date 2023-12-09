@@ -10,31 +10,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="heslotextfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="110.0" layoutY="107.0" text="meno:">
+      <Label layoutX="92.0" layoutY="155.0" stylesheets="@Labels.css" text="meno:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="menoTextField" layoutX="182.0" layoutY="112.0" prefHeight="26.0" prefWidth="301.0" />
-      <PasswordField fx:id="hesloTextField" layoutX="182.0" layoutY="169.0" prefHeight="25.0" prefWidth="295.0" />
-      <Label layoutX="112.0" layoutY="164.0" text="heslo:">
+      <TextField fx:id="menoTextField" layoutX="158.0" layoutY="151.0" prefHeight="29.0" prefWidth="295.0" stylesheets="@prihlasenieFieldy.css" />
+      <PasswordField fx:id="hesloTextField" layoutX="158.0" layoutY="201.0" prefHeight="25.0" prefWidth="295.0" stylesheets="@prihlasenieFieldy.css" />
+      <Label layoutX="93.0" layoutY="205.0" stylesheets="@Labels.css" text="heslo:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="prihlasenieButton" layoutX="245.0" layoutY="231.0" mnemonicParsing="false" onAction="#prihlasenie" text="Prihlásiť sa">
+      <Button fx:id="prihlasenieButton" layoutX="244.0" layoutY="301.0" mnemonicParsing="false" onAction="#prihlasenie" stylesheets="@buttons.css" text="Prihlásiť sa">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="227.0" layoutY="46.0" text="prosím, prihláste sa " textAlignment="CENTER">
+      <Label layoutX="221.0" layoutY="67.0" text="prosím, prihláste sa " textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Text layoutX="257.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dobrý deň,">
+      <Text layoutX="250.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dobrý deň,">
          <font>
             <Font name="AGA Arabesque" size="20.0" />
          </font>

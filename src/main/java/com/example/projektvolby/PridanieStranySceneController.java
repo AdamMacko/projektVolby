@@ -97,21 +97,6 @@ public class PridanieStranySceneController {
     }
 
     @FXML
-    void pridanieMena(ActionEvent event) {
-
-    }
-
-    @FXML
-    void pridanieNazvu(ActionEvent event) {
-
-    }
-
-    @FXML
-    void pridanieVeku(ActionEvent event) {
-
-    }
-
-    @FXML
     void ulozStranu(ActionEvent event) {
         Strana strana= stranyFxModel.getStrana();
         StranaDao stranyDao = DaoFactory.INSTANCE.getStranyDao();

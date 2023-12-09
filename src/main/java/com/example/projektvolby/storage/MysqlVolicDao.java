@@ -1,8 +1,5 @@
 package com.example.projektvolby.storage;
 
-import com.example.projektvolby.Kandidat;
-import com.example.projektvolby.Strana;
-import com.example.projektvolby.Ulica;
 import com.example.projektvolby.Volic;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -13,12 +10,12 @@ import java.sql.*;
 import java.util.List;
 import java.util.Objects;
 
-public class MysqlVoliciDao implements VolicDao {
+public class MysqlVolicDao implements VolicDao {
     private JdbcTemplate jdbcTemplate;
-    private VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
 
 
-    public MysqlVoliciDao(org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
+
+    public MysqlVolicDao(org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -27,7 +24,7 @@ public class MysqlVoliciDao implements VolicDao {
 
             @Override
             public Volic mapRow(ResultSet rs, int rowNum) throws SQLException {
-                long id = rs.getLong("id");
+                Long id = rs.getLong("id");
                 String meno = rs.getString("meno");
                 String priezvisko = rs.getString("priezvisko");
                 String cOP = rs.getString("cOP");
@@ -56,24 +53,22 @@ public class MysqlVoliciDao implements VolicDao {
                 "Priezvisko volica nemôže byť prázdne");
         Objects.requireNonNull(volic.getcOP(),
                 "Cislo OP volica nemôže byť prázdne");
-        Objects.requireNonNull(volic.getUlica(),
-                "Ulica volica nemôže byť prázdna");
 
 
-        if (volic.getId() == 0) { //INSERT
-            String query = "INSERT INTO kandidati (meno, priezvisko, cOP,dochadzka, ulica_id) "
-                    + "VALUES (?,?,?,?,?)";
+
+        if (volic.getId() == null) { // INSERT
+            String query = "INSERT INTO volici (meno, priezvisko, cOP, dochadzka, ulica_id) VALUES (?, ?, ?, ?, ?)";
             GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
             jdbcTemplate.update(new PreparedStatementCreator() {
-
                 @Override
                 public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                     PreparedStatement statement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                    System.out.println(volic.getMeno());
                     statement.setString(1, volic.getMeno());
                     statement.setString(2, volic.getPriezvisko());
-                    statement.setString(3,volic.getcOP());
-                    statement.setBoolean(4,false);
-                    statement.setLong(5,volic.getUlica());
+                    statement.setString(3, volic.getcOP());
+                    statement.setString(4, "9"); // assuming dochadzka is a string representing '9'
+                    statement.setString(5, "1"); // assuming ulica_id is a string representing '3'
                     return statement;
                 }
             }, keyHolder);
@@ -81,14 +76,15 @@ public class MysqlVoliciDao implements VolicDao {
             Volic saved = Volic.clone(volic);
             saved.setId(id);
             return saved;
-        } else {	//UPDATE
-            String query = "UPDATE volici SET meno=?, priezvisko=?, cOP=?,dochadzka=?, ulica_id=? "
-                    + "WHERE id = ?";
+
+
+        } else { // UPDATE
+            String query = "UPDATE volici SET meno=?, priezvisko=?, cOP=?, dochadzka=?, ulica_id=? WHERE id = ?";
             int count = jdbcTemplate.update(query, volic.getMeno(),
                     volic.getPriezvisko(),
                     volic.getcOP(),
-                    volic.isDochadzka(),
-                    volic.getUlica(),
+                    volic.isDochadzka(), // Use isDochadzka() for boolean value
+                    volic.getUlicaId(), // Assuming getUlicaId() returns ulica_id
                     volic.getId());
             if (count == 0) {
                 throw new EntityNotFoundException(
@@ -108,9 +104,19 @@ public class MysqlVoliciDao implements VolicDao {
         }
     }
 
+    @Override
+    public void deleteAll() {
+        String query = "DELETE FROM volici"; // SQL príkaz na vymazanie všetkých záznamov z tabuľky volici
+        jdbcTemplate.update(query);
+    }
 
-
-
-
-
+    public boolean overHeslo(String cOP){
+        boolean odpoved = false;
+        String query = "SELECT COUNT(*) FROM volici WHERE cOP = ?";
+        int pocet = jdbcTemplate.queryForObject(query, Integer.class, cOP);
+        if(pocet > 0){
+            odpoved = true;
+        }
+        return odpoved;
+    }
 }

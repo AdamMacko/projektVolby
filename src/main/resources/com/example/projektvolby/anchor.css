@@ -1,0 +1,6 @@
+#anchorP {
+    -fx-background-image: url('file:///C:/Users/macko/IdeaProjects/projektVolby/src/main/resources/com/example/projektvolby/znak.png');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-opacity: 0.5;
+}

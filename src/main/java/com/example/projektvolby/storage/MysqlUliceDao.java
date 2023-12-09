@@ -98,5 +98,11 @@ public class MysqlUliceDao implements UliceDao {
 
     }
 
+    @Override
+    public int getIdByPSC(String psc) {
+        String query = "SELECT id FROM ulica WHERE PSC = ?";
+        return jdbcTemplate.queryForObject(query,Integer.class,psc);
+    }
+
 
 }

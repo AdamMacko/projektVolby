@@ -2,6 +2,8 @@ package com.example.projektvolby;
 
 import java.io.IOException;
 
+import com.example.projektvolby.storage.DaoFactory;
+import com.example.projektvolby.storage.VolicDao;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,17 +38,19 @@ public class PrihlasenieScenaController {
 				openAdminlayout();
 				((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
 			}
-			else if("volic".equals(meno) && "volic".equals(heslo)){
+		VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+		boolean isHesloValid = volicDao.overHeslo(heslo);
+			 if (isHesloValid){
 				openInstrukcieOkno();
 				((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
 			}
-			else{
+			if(!isHesloValid && ! heslo.equals("admin")){
 				menoTextField.setText("");
 				hesloTextField.setText("");
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setTitle("zle meno heslo");
-				alert.setHeaderText("zle meno heslo");
-				alert.setContentText("Napisali ste zle meno z obcianskeho preukazu alebo zle heslo v podobe cisla obcianskeho preukazu");
+				alert.setTitle("Upozornenie");
+				alert.setHeaderText("Zadajte údaje znova");
+				alert.setContentText("Napisali ste zle meno alebo cislo OP");
 
 				alert.showAndWait();
 			}
@@ -91,8 +95,4 @@ public class PrihlasenieScenaController {
 			e.printStackTrace();
 		}
 	}
-
-    
-   
-
 }

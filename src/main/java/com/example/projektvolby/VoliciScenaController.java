@@ -1,4 +1,5 @@
 package com.example.projektvolby;
+import com.example.projektvolby.storage.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,8 @@ import java.util.Scanner;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class VoliciScenaController {
+    @FXML
+    private TextField PSCTextField;
     @FXML
     private TextField bydliskoTextField;
 
@@ -52,6 +55,9 @@ public class VoliciScenaController {
 
     @FXML
     private Button vymazatbutton;
+    private Volic novyVolic;
+
+
 
 
     private VolicFxModel volicFxModel;
@@ -68,7 +74,28 @@ public class VoliciScenaController {
         priezviskoTextFiled.textProperty().bindBidirectional(volicFxModel.priezviskoProperty());
         cisloOPTextField.textProperty().bindBidirectional(volicFxModel.cOPProperty());
         volicListView.setItems(volicFxModel.volic());
-
+        VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+        List<Volic> existingVoters = volicDao.getAll(); // Získanie všetkých voličov z databázy
+        volicFxModel.volic().addAll(existingVoters); // Pridanie existujúcich voličov do ObservableList
+        volicListView.setCellFactory(param -> new ListCell<Volic>() {
+            @Override
+            protected void updateItem(Volic item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getMeno() + " " + item.getPriezvisko());
+                    setOnMouseEntered(event -> {
+                        setScaleX(1.1); // Zväčšenie šírky
+                        setScaleY(1.1); // Zväčšenie výšky
+                    });
+                    setOnMouseExited(event -> {
+                        setScaleX(1.0); // Vrátenie šírky na pôvodnú hodnotu
+                        setScaleY(1.0); // Vrátenie výšky na pôvodnú hodnotu
+                    });
+                }
+            }
+        });
     }
     @FXML
     //nacitanie zo suboru
@@ -105,10 +132,7 @@ public class VoliciScenaController {
     private List<Volic> nacitajzCSV(File file) throws FileNotFoundException  {
         Scanner scanner = new Scanner(file, "utf-8");
         List<Volic> volici = new ArrayList<>();
-        String[]udaje = new String[4];
-        int meno = 0;
-        int priezvisko = 1;
-        int cisloOP = 2;
+        String[]udaje = new String[6];
 
 
 
@@ -125,13 +149,32 @@ public class VoliciScenaController {
     @FXML
         //tlacidlo pridat
     void pridat(ActionEvent event) {
+     String meno = menoTextField.getText().trim();
+     String priezvisko = priezviskoTextFiled.getText().trim();
+     String cisloOP = cisloOPTextField.getText().trim();
+     String trvaleBydlisko = bydliskoTextField.getText().trim();
+     String psc = PSCTextField.getText().trim();
+
+
+         Volic volic = new Volic(meno, priezvisko, cisloOP);
+         volicFxModel.volic().add(volic);
+         menoTextField.clear();
+         priezviskoTextFiled.clear();
+         cisloOPTextField.clear();
+         bydliskoTextField.clear();
+         PSCTextField.clear();
+
+
 
     }
 
     @FXML
     //tlacidlo ulozit
     void ulozit(ActionEvent event) {
-
+        Volic volic= volicFxModel.getVolic();
+        VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+        novyVolic=volicDao.save(volic);
+        ulozitButton.getScene().getWindow().hide();
     }
 
     @FXML
@@ -143,8 +186,19 @@ public class VoliciScenaController {
     @FXML
     //tlacidlo na vymazanie volica
     void vymazat(ActionEvent event) {
+        Volic volic = volicListView.getSelectionModel().getSelectedItem();
+        if (volic != null) {
+            VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+            try {
+                volicDao.delete(volic.getId()); // Vymazanie z databázy podľa ID
+                volicFxModel.volic().remove(volic); // Odstránenie z používateľského rozhrania
+            } catch (EntityNotFoundException e) {
 
+                e.printStackTrace();
+            }
+        }
     }
+
 
     @FXML
     void spatButton(ActionEvent event) {
@@ -154,6 +208,11 @@ public class VoliciScenaController {
 
     @FXML
     void vymazeVsetkychVolicov(ActionEvent event){
+        VolicDao volicDao = DaoFactory.INSTANCE.getVolicDao();
+        volicDao.deleteAll(); // Volanie metódy na vymazanie celej tabuľky
+
+        // Následne môžeme aktualizovať používateľské rozhranie, vyčistením ListView
+        volicFxModel.volic().clear();
 
     }
 
