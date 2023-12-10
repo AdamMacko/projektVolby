@@ -69,7 +69,7 @@ public enum DaoFactory {
 
     public VolicDao getVoliciDao() {
         if(volicDao == null){
-            volicDao= new MysqlVoliciDao(getJdbcTemplate());
+            volicDao= new MysqlVolicDao(getJdbcTemplate());
         }
         return volicDao;
     }

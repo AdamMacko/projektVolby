@@ -7,6 +7,9 @@ public class Volic {
     private String meno;
     private String priezvisko;
     private String cOP;
+    private String trvaleBydlisko;
+    private String PSC;
+
     private boolean dochadzka;
     private Long ulicaId;
 
@@ -23,11 +26,29 @@ public class Volic {
     }
 
 
-    public Volic (String meno, String priezvisko, String cOP){
+    public Volic (String meno, String priezvisko, String cOP,String trvaleBydlisko,String PSC){
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.cOP = cOP;
+        this.trvaleBydlisko=trvaleBydlisko;
+        this.PSC = PSC;
 
+    }
+
+    public String getTrvaleBydlisko() {
+        return trvaleBydlisko;
+    }
+
+    public void setTrvaleBydlisko(String trvaleBydlisko) {
+        this.trvaleBydlisko = trvaleBydlisko;
+    }
+
+    public String getPSC() {
+        return PSC;
+    }
+
+    public void setPSC(String PSC) {
+        this.PSC = PSC;
     }
 
     public Long getUlicaId() {

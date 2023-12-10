@@ -75,8 +75,8 @@ public class VoliciScenaController {
         cisloOPTextField.textProperty().bindBidirectional(volicFxModel.cOPProperty());
         volicListView.setItems(volicFxModel.volic());
         VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
-        List<Volic> existingVoters = volicDao.getAll(); // Získanie všetkých voličov z databázy
-        volicFxModel.volic().addAll(existingVoters); // Pridanie existujúcich voličov do ObservableList
+        List<Volic> existujuciVolici = volicDao.getAll(); // Získanie všetkých voličov z databázy
+        volicFxModel.volic().addAll(existujuciVolici); // Pridanie existujúcich voličov do ObservableList
         volicListView.setCellFactory(param -> new ListCell<Volic>() {
             @Override
             protected void updateItem(Volic item, boolean empty) {
@@ -119,8 +119,18 @@ public class VoliciScenaController {
         if (selectedFile != null) {
             System.out.println("Vybratý súbor: " + selectedFile);
             try {
-                List<Volic> students = nacitajzCSV(selectedFile);
-                volicFxModel.volic().setAll(students);
+                if (nacitajzCSV(selectedFile) != null) {
+                   // System.out.println("vypisujem");
+                    List<Volic> volici = nacitajzCSV(selectedFile);
+                    volicFxModel.volic().setAll(volici);
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Upozornenie");
+                    alert.setHeaderText("Chyba");
+                    alert.setContentText("Skontrolujte bydlisko a PSC volica");
+
+                    alert.showAndWait();
+                }
             } catch (FileNotFoundException e) {
                 // nenastane
                 e.printStackTrace();
@@ -132,18 +142,61 @@ public class VoliciScenaController {
     private List<Volic> nacitajzCSV(File file) throws FileNotFoundException  {
         Scanner scanner = new Scanner(file, "utf-8");
         List<Volic> volici = new ArrayList<>();
-        String[]udaje = new String[6];
+        String[]udaje = new String[5];
+        boolean nenaslaSaChyba = true;
+            int chybaNaRiadku = 0;
 
-
-
-        while(scanner.hasNextLine()) {
             scanner.nextLine();
-            String vcelku = scanner.nextLine();
-            udaje = vcelku.split(";");
-            Volic volic = new Volic(udaje[0],udaje[1],udaje[2]);
-            volici.add(volic);
+            while (scanner.hasNextLine()) {
+                chybaNaRiadku++;
+                String vcelku = scanner.nextLine();
+                udaje = vcelku.split(";");
+               // System.out.println(udaje.length);
+                if (udaje.length-1 > 3) {
+                    if (existujeUlicaVPSC(udaje[3], udaje[4])) {
+                        Volic volic = new Volic(udaje[0], udaje[1], udaje[2],udaje[3],udaje[4]);
+                        volici.add(volic);
+                    } else {
+                        nenaslaSaChyba = false;
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Upozornenie");
+                        alert.setHeaderText("Chyba na riadku: " + chybaNaRiadku);
+                        alert.showAndWait();
+                        break;
+                    }
+                }else {
+                    nenaslaSaChyba = false;
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Upozornenie");
+                    alert.setHeaderText("Chyba na riadku: " + chybaNaRiadku);
+                    alert.showAndWait();
+                    break;
+                }
+            }
+
+                    if (!nenaslaSaChyba) {
+                        scanner.close();
+                        return null;
+
+                    } else {
+                        scanner.close();
+                        return volici;
+                    }
+
+    }
+
+
+
+    private boolean existujeUlicaVPSC(String ulica, String psc) {
+        UliceDao ulicaDao = DaoFactory.INSTANCE.getUliceDao();
+        List<Ulica> ulice = ulicaDao.getAll(); // Ziskame vsetky ulice z databazy
+
+        for (Ulica ulicaVDb : ulice) {
+            if (ulicaVDb.getNazov().equals(ulica) && ulicaVDb.getPSC().equals(psc)) {
+                return true;
+            }
         }
-        return volici;
+        return false;
     }
 
     @FXML
@@ -155,14 +208,21 @@ public class VoliciScenaController {
      String trvaleBydlisko = bydliskoTextField.getText().trim();
      String psc = PSCTextField.getText().trim();
 
-
-         Volic volic = new Volic(meno, priezvisko, cisloOP);
-         volicFxModel.volic().add(volic);
-         menoTextField.clear();
-         priezviskoTextFiled.clear();
-         cisloOPTextField.clear();
-         bydliskoTextField.clear();
-         PSCTextField.clear();
+    if(existujeUlicaVPSC(trvaleBydlisko,psc)) {
+        Volic volic = new Volic(meno, priezvisko, cisloOP,trvaleBydlisko,psc);
+        volicFxModel.volic().add(volic);
+        menoTextField.clear();
+        priezviskoTextFiled.clear();
+        cisloOPTextField.clear();
+        bydliskoTextField.clear();
+        PSCTextField.clear();
+    }else {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Chyba");
+        alert.setHeaderText("Nesprávny volič");
+        alert.setContentText("Volič nepatrí do okrsku");
+        alert.showAndWait();
+    }
 
 
 
@@ -171,9 +231,29 @@ public class VoliciScenaController {
     @FXML
     //tlacidlo ulozit
     void ulozit(ActionEvent event) {
-        Volic volic= volicFxModel.getVolic();
+        UliceDao uliceDao = DaoFactory.INSTANCE.getUliceDao();
         VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
-        novyVolic=volicDao.save(volic);
+
+        List<Ulica> ulice = uliceDao.getAll();
+
+        for (Volic volic : volicFxModel.volic()) {
+            String trvaleBydlisko = bydliskoTextField.getText().trim();
+            String psc = PSCTextField.getText().trim();
+            Long ulicaId = null;
+
+            for (Ulica ulicaVDb : ulice) {
+                if (ulicaVDb.getNazov().equals(volic.getTrvaleBydlisko()) && ulicaVDb.getPSC().equals(volic.getPSC())) {
+                    ulicaId = ulicaVDb.getId();
+                    break;
+                }
+            }
+
+            try {
+                volicDao.save(volic, ulicaId);
+            } catch (EntityNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
         ulozitButton.getScene().getWindow().hide();
     }
 
@@ -202,7 +282,7 @@ public class VoliciScenaController {
 
     @FXML
     void spatButton(ActionEvent event) {
-        openAdminlayout();
+
         ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
     }
 

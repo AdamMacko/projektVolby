@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VolicDao {
  List<Volic> getAll();
- Volic save(Volic volic)throws EntityNotFoundException;
+ Volic save(Volic volic,Long ulicaId)throws EntityNotFoundException;
     void delete(long id) throws EntityNotFoundException;
 
 

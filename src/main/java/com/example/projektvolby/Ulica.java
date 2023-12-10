@@ -17,6 +17,13 @@ public class Ulica {
 
 	}
 
+	public Ulica(String nazov, int popisne_cislo, String PSC) {
+		this.nazov = nazov;
+		this.popisne_cislo = popisne_cislo;
+		this.PSC = PSC;
+
+	}
+
 	public long getId() {
 		return id;
 	}
