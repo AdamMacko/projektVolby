@@ -9,27 +9,27 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="254.0" layoutY="14.0" text="ULICE">
+      <Label layoutX="221.0" layoutY="14.0" text="ULICE OKRSKU">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="58.0" text="pridanie ručne:">
+      <Label layoutX="25.0" layoutY="58.0" text="Pridať ručne:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="22.0" layoutY="118.0" text="názov" />
-      <Label layoutX="21.0" layoutY="177.0" text="popisné-číslo" />
-      <Label layoutX="28.0" layoutY="232.0" text="PSC" />
-      <TextField fx:id="nazovTextField" layoutX="131.0" layoutY="114.0" />
-      <TextField fx:id="popisneCisloTextField" layoutX="131.0" layoutY="173.0" />
-      <TextField fx:id="pscTextField" layoutX="131.0" layoutY="228.0" />
-      <Button fx:id="vymazatButton" layoutX="228.0" layoutY="267.0" mnemonicParsing="false" onAction="#vymazeObec" text="Vymazať" />
-      <Button fx:id="pridatButton" layoutX="14.0" layoutY="267.0" mnemonicParsing="false" onAction="#pridaUlicu" text="Pridať" />
-      <Button fx:id="ExtrakciaButton" layoutX="13.0" layoutY="303.0" mnemonicParsing="false" onAction="#extrahujeUlice" text="Extrahovať zo súboru" />
-      <Button fx:id="ulozitButton" layoutX="244.0" layoutY="361.0" mnemonicParsing="false" onAction="#uloziUlicu" text="uložiť" />
+      <Label layoutX="49.0" layoutY="118.0" text=" Názov :" />
+      <Label layoutX="14.0" layoutY="155.0" text="Popisné číslo :" />
+      <Label layoutX="64.0" layoutY="191.0" text="PSČ :" />
+      <TextField fx:id="nazovTextField" layoutX="104.0" layoutY="114.0" />
+      <TextField fx:id="popisneCisloTextField" layoutX="104.0" layoutY="151.0" />
+      <TextField fx:id="pscTextField" layoutX="104.0" layoutY="187.0" />
+      <Button fx:id="vymazatButton" layoutX="18.0" layoutY="231.0" mnemonicParsing="false" onAction="#vymazeObec" stylesheets="@buttons.css" text="Vymazať" />
+      <Button fx:id="pridatButton" layoutX="229.0" layoutY="231.0" mnemonicParsing="false" onAction="#pridaUlicu" stylesheets="@buttons.css" text="Pridať" />
+      <Button fx:id="ExtrakciaButton" layoutX="16.0" layoutY="348.0" mnemonicParsing="false" onAction="#extrahujeUlice" stylesheets="@buttons.css" text="Extrahovať zo súboru" />
+      <Button fx:id="ulozitButton" layoutX="230.0" layoutY="276.0" mnemonicParsing="false" onAction="#uloziUlicu" stylesheets="@buttons.css" text="uložiť" />
       <ListView fx:id="uliceListView" layoutX="300.0" layoutY="71.0" prefHeight="303.0" prefWidth="286.0" />
-      <Button fx:id="vymazvsetkoButton" layoutX="13.0" layoutY="360.0" mnemonicParsing="false" onAction="#vymazeVsetkyUlice" text="vymazať všetko" />
+      <Button fx:id="vymazvsetkoButton" layoutX="15.0" layoutY="276.0" mnemonicParsing="false" onAction="#vymazeVsetkyUlice" stylesheets="@buttons.css" text="vymazať všetko" />
    </children>
 </AnchorPane>

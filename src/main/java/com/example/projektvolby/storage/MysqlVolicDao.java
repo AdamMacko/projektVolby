@@ -10,12 +10,12 @@ import java.sql.*;
 import java.util.List;
 import java.util.Objects;
 
-public class MysqlVoliciDao implements VolicDao {
+public class MysqlVolicDao implements VolicDao {
     private JdbcTemplate jdbcTemplate;
 
 
 
-    public MysqlVoliciDao(org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
+    public MysqlVolicDao(org.springframework.jdbc.core.JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -45,7 +45,7 @@ public class MysqlVoliciDao implements VolicDao {
     }
 
     @Override
-    public Volic save(Volic volic) throws EntityNotFoundException {
+    public Volic save(Volic volic,Long ulicaId) throws EntityNotFoundException {
         Objects.requireNonNull(volic, "Volic nemôže byť prázdny");
         Objects.requireNonNull(volic.getMeno(),
                 "Meno volica nemôže byť prázdne");
@@ -67,8 +67,8 @@ public class MysqlVoliciDao implements VolicDao {
                     statement.setString(1, volic.getMeno());
                     statement.setString(2, volic.getPriezvisko());
                     statement.setString(3, volic.getcOP());
-                    statement.setString(4, "9"); // assuming dochadzka is a string representing '9'
-                    statement.setString(5, "5"); // assuming ulica_id is a string representing '3'
+                    statement.setString(4, "0");
+                    statement.setLong(5, ulicaId);
                     return statement;
                 }
             }, keyHolder);

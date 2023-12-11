@@ -8,6 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 
 public class PridanieStranySceneController {
 
@@ -74,6 +80,47 @@ public class PridanieStranySceneController {
 
     @FXML
     void extrahujeKandidatov(ActionEvent event) {
+
+
+    }
+
+    private List<Kandidat> nacitajzCSV(File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file, "utf-8");
+        List<Kandidat> kandidati = new ArrayList<>();
+        String[] udaje = new String[3];
+        boolean nenaslaSaChyba = true;
+        int chybaNaRiadku = 0;
+        scanner.nextLine();
+        while (scanner.hasNextLine()) {
+            chybaNaRiadku++;
+            String vcelku = scanner.nextLine();
+            udaje = vcelku.split(";");
+
+            if (udaje.length == 3) {
+
+                    Kandidat kandidat = new Kandidat(udaje[0], udaje[1], Integer.parseInt(udaje[2]));
+                    kandidati.add(kandidat);
+            }else {
+                nenaslaSaChyba = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Upozornenie");
+                alert.setHeaderText("Chyba na riadku: " + chybaNaRiadku);
+                alert.showAndWait();
+                break;
+            }
+        }
+
+        if (!nenaslaSaChyba) {
+            scanner.close();
+            return null;
+
+        } else {
+            scanner.close();
+            return kandidati;
+        }
+
+
+
 
     }
 

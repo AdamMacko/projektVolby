@@ -9,6 +9,8 @@ public class VolicFxModel {
     private StringProperty meno = new SimpleStringProperty();
     private StringProperty priezvisko = new SimpleStringProperty();
     private StringProperty cOP = new SimpleStringProperty();
+    private StringProperty trvaleBydlisko = new SimpleStringProperty();
+    private StringProperty PSC = new SimpleStringProperty();
     private BooleanProperty dochadzka = new SimpleBooleanProperty();
     private ObservableList<Volic> volic;
 
@@ -46,7 +48,33 @@ public class VolicFxModel {
         this.cOP.set(cOP);
     }
 
+    public String getTrvaleBydlisko() {
+        return trvaleBydlisko.get();
+    }
 
+    public StringProperty trvaleBydliskoProperty() {
+        return trvaleBydlisko;
+    }
+
+    public void setTrvaleBydlisko(String trvaleBydlisko) {
+        this.trvaleBydlisko.set(trvaleBydlisko);
+    }
+
+    public String getPSC() {
+        return PSC.get();
+    }
+
+    public StringProperty PSCProperty() {
+        return PSC;
+    }
+
+    public void setPSC(String PSC) {
+        this.PSC.set(PSC);
+    }
+
+    public void setVolic(ObservableList<Volic> volic) {
+        this.volic = volic;
+    }
 
     public Long getId() {
         return id;
@@ -93,6 +121,6 @@ public class VolicFxModel {
     }
 
     public Volic getVolic() {
-        return new Volic( getMeno(), getPriezvisko(),getcOP());
+        return new Volic( getMeno(), getPriezvisko(),getcOP(), getTrvaleBydlisko(),getPSC());
     }
 }

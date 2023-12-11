@@ -3,6 +3,7 @@ package com.example.projektvolby.storage;
 import com.example.projektvolby.Kandidat;
 import com.example.projektvolby.Strana;
 import com.example.projektvolby.Ulica;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -103,6 +104,9 @@ public class MysqlUliceDao implements UliceDao {
         String query = "SELECT id FROM ulica WHERE PSC = ?";
         return jdbcTemplate.queryForObject(query,Integer.class,psc);
     }
+
+
+
 
 
 }

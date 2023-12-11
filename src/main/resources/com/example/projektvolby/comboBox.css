@@ -1,0 +1,16 @@
+.combo-box {
+    -fx-background-color: #dbe0e1;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #2a79ad;
+    -fx-font-size: 14px;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.combo-box .arrow-button:hover {
+    -fx-background-color: #2875a7;
+}
