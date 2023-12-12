@@ -110,13 +110,27 @@ public class MysqlVolicDao implements VolicDao {
         jdbcTemplate.update(query);
     }
 
-    public boolean overHeslo(String cOP){
+    public boolean overHesloMeno(String meno,String priezvisko,String cOP){
         boolean odpoved = false;
-        String query = "SELECT COUNT(*) FROM volici WHERE cOP = ?";
-        int pocet = jdbcTemplate.queryForObject(query, Integer.class, cOP);
+        String query = "SELECT COUNT(*) FROM volici WHERE meno = ? AND priezvisko = ? AND cOP = ?";
+        int pocet = jdbcTemplate.queryForObject(query, Integer.class,meno,priezvisko,cOP);
         if(pocet > 0){
             odpoved = true;
         }
         return odpoved;
+    }
+
+    public void aktualizujDochadzku(String meno, String priezvisko, String cOP) {
+        String query = "UPDATE volici SET dochadzka = 1 WHERE meno = ? AND priezvisko = ? AND cOP = ?";
+        jdbcTemplate.update(query, meno, priezvisko, cOP);
+    }
+
+    public boolean bolVolit(String meno, String priezvisko, String cOP){
+        String query = "SELECT COUNT(*) FROM volici WHERE meno = ? AND priezvisko = ? AND cOP = ? AND dochadzka = 1";
+        int pocet = jdbcTemplate.queryForObject(query, Integer.class, meno, priezvisko, cOP);
+        if (pocet == 1){
+            return true;
+        }
+        return false;
     }
 }

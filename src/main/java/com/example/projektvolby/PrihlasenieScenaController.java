@@ -1,5 +1,6 @@
 package com.example.projektvolby;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.example.projektvolby.storage.DaoFactory;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -31,35 +33,61 @@ public class PrihlasenieScenaController {
 
     @FXML
     void prihlasenie(ActionEvent event) {
-
-			String meno = menoTextField.getText().trim();
+			String[] celeMeno = menoTextField.getText().split(" ");
+			String menoA =  menoTextField.getText().trim();
 			String heslo = hesloTextField.getText().trim();
-			if("admin".equals(meno) && "admin".equals(heslo)) {
-				openAdminlayout();
-				((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
-			}
+			boolean admin = false;
+		if ("admin".equals(menoA) && "admin".equals(heslo)) {
+			admin = true;
+			openAdminlayout();
+			((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
+		}
+		String meno = celeMeno[0];
+		String priezvisko = celeMeno[1];
 		VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
-		boolean isHesloValid = volicDao.overHeslo(heslo);
-			 if (isHesloValid){
-				openInstrukcieOkno();
-				((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
-			}
-			if(!isHesloValid && ! heslo.equals("admin")){
-				menoTextField.setText("");
-				hesloTextField.setText("");
+		boolean isMenoHesloValid = volicDao.overHesloMeno(meno, priezvisko, heslo);
+		boolean bolVolit = volicDao.overHesloMeno(meno, priezvisko, heslo);
+		if(bolVolit){
+
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Upozornenie");
+			alert.setHeaderText("Zamietnute");
+			alert.setContentText("Volit mozete len raz");
+			alert.showAndWait();
+			menoTextField.clear();
+			hesloTextField.clear();
+		}else {
+			if (celeMeno.length == 2 && admin == false) {
+				if (isMenoHesloValid) {
+					volicDao.aktualizujDochadzku(meno, priezvisko, heslo);
+					openInstrukcieOkno();
+					((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
+				}
+				if (!isMenoHesloValid && !heslo.equals("admin")) {
+					menoTextField.setText("");
+					hesloTextField.setText("");
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Upozornenie");
+					alert.setHeaderText("Zadajte údaje znova");
+					alert.setContentText("Napisali ste zle meno alebo cislo OP");
+
+					alert.showAndWait();
+				}
+			} else if (admin == false) {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Upozornenie");
-				alert.setHeaderText("Zadajte údaje znova");
-				alert.setContentText("Napisali ste zle meno alebo cislo OP");
+				alert.setHeaderText("Zadajte meno znova");
+				alert.setContentText("V tvare |Meno Priezvisko|");
 
 				alert.showAndWait();
+
 			}
-
-
+		}
     }
     
     
     private void openInstrukcieOkno() {
+
 		try {
 			IntrukcieSceneController controller = new IntrukcieSceneController();
 			FXMLLoader loader = new FXMLLoader(
@@ -68,6 +96,9 @@ public class PrihlasenieScenaController {
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent);
 			Stage stage = new Stage();
+			File file = new File("C:\\Users\\macko\\IdeaProjects\\projektVolby\\sr.png");
+			Image icon = new Image(file.toURI().toString());
+			stage.getIcons().add(icon);
 			stage.setScene(scene);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("INSTRUKCIE");
@@ -86,6 +117,9 @@ public class PrihlasenieScenaController {
 			Parent parent = loader.load();
 			Scene scene = new Scene(parent);
 			Stage stage = new Stage();
+			File file = new File("C:\\Users\\macko\\IdeaProjects\\projektVolby\\sr.png");
+			Image icon = new Image(file.toURI().toString());
+			stage.getIcons().add(icon);
 			stage.setScene(scene);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("ADMIN");

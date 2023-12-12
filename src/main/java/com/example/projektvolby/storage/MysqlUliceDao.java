@@ -42,11 +42,10 @@ public class MysqlUliceDao implements UliceDao {
     }
     @Override
     public Ulica save(Ulica ulica) throws EntityNotFoundException {
-        Objects.requireNonNull(ulica, "Kandidat nemôže byť prázdny");
         Objects.requireNonNull(ulica.getNazov(),"Názov ulice nemôže byť prázdny");
         Objects.requireNonNull(ulica.getPopisne_cislo(),"Popisné číslo ulice nemôže byť prázdny");
         Objects.requireNonNull(ulica.getPSC(),"PSC ulice nemôže byť prázdne");
-        if (ulica.getId() == 0) { //INSERT
+        if (ulica.getId() == null) { //INSERT
             String query = "INSERT INTO ulica (nazov, popisne_cislo, PSC) "
                     + "VALUES (?,?,?)";
             GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();

@@ -17,7 +17,7 @@ public class Kandidat {
         this.priezvisko = priezvisko;
         this.vek = vek;
     }
-    public Kandidat( String meno, String priezvisko, int vek) {
+    public Kandidat(String meno, String priezvisko, int vek) {
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.vek = vek;
@@ -28,7 +28,7 @@ public class Kandidat {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

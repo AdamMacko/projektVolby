@@ -57,7 +57,7 @@ public class MysqlKandidatDao implements KandidatDao{
         Objects.requireNonNull(kandidat.getMeno(),"Meno nemôže byť prázdne");
         Objects.requireNonNull(kandidat.getPriezvisko(),"Priezvisko nemôže byť prázdne");
         Objects.requireNonNull(kandidat.getVek(),"Vek nemôže byť prázdny");
-        if (kandidat.getId() == 0) { //INSERT
+        if (kandidat.getId() == null) { //INSERT
             String query = "INSERT INTO kandidati (meno, priezvisko, vek, strany_id) "
                     + "VALUES (?,?,?,?)";
             GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();

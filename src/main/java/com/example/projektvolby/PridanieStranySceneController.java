@@ -7,11 +7,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 
@@ -45,6 +47,7 @@ public class PridanieStranySceneController {
     private Button extrahovatButton;
 
     private StranyFxModel stranyFxModel;
+
 
     private Strana novaStrana;
 
@@ -80,7 +83,43 @@ public class PridanieStranySceneController {
 
     @FXML
     void extrahujeKandidatov(ActionEvent event) {
+        if(! stranyFxModel.kandidatiModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Nahradenie kandidatov z exportu");
+            alert.setHeaderText("Nahradenie kandidatov z exportu");
+            alert.setContentText("Kandidáti, ktori sú doteraz na zozname, "
+                    + "budú nahradeni kandidatmi  z CSV súboru.");
 
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() != ButtonType.OK){
+                return;
+            }
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File selectedFile = fileChooser.showOpenDialog(kandidatiListView.getScene().getWindow());
+
+        if (selectedFile != null) {
+            System.out.println("Vybratý súbor: " + selectedFile);
+            try {
+                if (nacitajzCSV(selectedFile) != null) {
+                    List<Kandidat> kandidati = nacitajzCSV(selectedFile);
+                    stranyFxModel.kandidatiModel().setAll(kandidati);
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Upozornenie");
+                    alert.setHeaderText("Chyba");
+                    alert.setContentText("Skontrolujte udaje v subore");
+
+                    alert.showAndWait();
+                }
+            } catch (FileNotFoundException e) {
+                // nenastane
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -118,10 +157,6 @@ public class PridanieStranySceneController {
             scanner.close();
             return kandidati;
         }
-
-
-
-
     }
 
     @FXML
@@ -150,8 +185,6 @@ public class PridanieStranySceneController {
 
         novaStrana=stranyDao.save(strana);
         ulozitButton.getScene().getWindow().hide();
-
-
     }
 
     @FXML

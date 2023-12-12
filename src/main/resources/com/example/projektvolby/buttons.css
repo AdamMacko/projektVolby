@@ -1,6 +1,7 @@
 .button {
     -fx-background-color: #9fceed; /* Farba pozadia tlačidla */
     -fx-effect: dropshadow(gaussian, #000000, 5, 0, 2, 2); /* Efekt tieňa */
+    -fx-background-radius: 20; /* Zaoblenie rohov */
 }
 
 .button:hover {

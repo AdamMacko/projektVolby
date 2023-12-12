@@ -1,6 +1,10 @@
 /* Štýly pre Label */
-Label {
+.label {
     -fx-font-size: 18px; /* Veľkosť písma */
     -fx-text-fill: #333; /* Farba textu */
     -fx-font-family: "Arial"; /* Font rodina */
+    -fx-font-weight: bold; /* Tučné písmo */
+    -fx-text-alignment: center; /* Zarovnanie textu */
+    -fx-effect: dropshadow(gaussian, rgba(103, 156, 235, 0.607), 2, 0, 0, 1); /* Efekt tieňa */
+    /* Ďalšie vlastnosti štýlu podľa potreby */
 }

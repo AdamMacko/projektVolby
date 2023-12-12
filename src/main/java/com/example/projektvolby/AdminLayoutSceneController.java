@@ -7,9 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AdminLayoutSceneController {
@@ -66,6 +68,9 @@ public class AdminLayoutSceneController {
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
+            File file = new File("C:\\Users\\macko\\IdeaProjects\\projektVolby\\sr.png");
+            Image icon = new Image(file.toURI().toString());
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("NOVA STRANA");
@@ -84,6 +89,9 @@ public class AdminLayoutSceneController {
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
+            File file = new File("C:\\Users\\macko\\IdeaProjects\\projektVolby\\sr.png");
+            Image icon = new Image(file.toURI().toString());
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("ADMIN");
@@ -102,6 +110,9 @@ public class AdminLayoutSceneController {
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
+            File file = new File("C:\\Users\\macko\\IdeaProjects\\projektVolby\\sr.png");
+            Image icon = new Image(file.toURI().toString());
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Editstrany");
@@ -120,6 +131,9 @@ public class AdminLayoutSceneController {
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
+            File file = new File("C:\\Users\\macko\\IdeaProjects\\projektVolby\\sr.png");
+            Image icon = new Image(file.toURI().toString());
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("ulice");
@@ -138,6 +152,9 @@ public class AdminLayoutSceneController {
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
+            File file = new File("C:\\Users\\macko\\IdeaProjects\\projektVolby\\sr.png");
+            Image icon = new Image(file.toURI().toString());
+            stage.getIcons().add(icon);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("predbezne");

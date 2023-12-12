@@ -1,0 +1,22 @@
+.table-view {
+    -fx-background-color: #8cb6da;
+    -fx-padding: 10px;
+}
+
+.table-row-cell {
+    -fx-background-color: #97bee1;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}
+
+.table-column {
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+.table-column .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}

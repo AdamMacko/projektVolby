@@ -156,7 +156,7 @@ public class UliceSceneController {
         String nazov=nazovTextField.getText().trim();
         int popisne=Integer.parseInt(popisneCisloTextField.getText().trim());
         String PSC=pscTextField.getText().trim();
-        Ulica ulica = new Ulica( 0L,nazov,popisne,PSC);
+        Ulica ulica = new Ulica(nazov,popisne,PSC);
         ulicaModel.add(ulica);
         nazovTextField.clear();
         popisneCisloTextField.clear();
