@@ -25,6 +25,8 @@ public class PridanieStranySceneController {
 
     @FXML
     private TextField menoTextField;
+    @FXML
+    private Button spatButton;
 
     @FXML
     private TextField nazovTextField;
@@ -222,6 +224,11 @@ public class PridanieStranySceneController {
 
             return result;
         }
+    }
+
+    @FXML
+    void spatButton(ActionEvent event) {
+        ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
     }
 
 }

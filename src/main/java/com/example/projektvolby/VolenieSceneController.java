@@ -131,7 +131,7 @@ public class VolenieSceneController {
             System.out.println(kandidati);
         }
 
-        if(pocet>4){
+        if(pocet>3){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Upozornenie");
             alert.setHeaderText("Vela zvolených");

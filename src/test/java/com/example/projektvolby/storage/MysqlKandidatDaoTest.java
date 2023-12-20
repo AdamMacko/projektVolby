@@ -37,9 +37,6 @@ class MysqlKandidatDaoTest {
         kandidatDao.save(kandidat,14);
         List<Kandidat> kandidatipo=kandidatDao.getAllByStranaId(14);
         System.out.println("kandidati strany po: "+kandidatipo);
-
-
-
     }
 
     @Test

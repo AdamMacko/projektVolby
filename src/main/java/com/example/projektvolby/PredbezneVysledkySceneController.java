@@ -33,6 +33,7 @@ public class PredbezneVysledkySceneController {
     @FXML
     private Label pocetOdvolenychLabel;
 
+
     @FXML
     private Label pocetHlasovLabel;
 
@@ -97,6 +98,9 @@ public class PredbezneVysledkySceneController {
 
     }
 
+
+
+
     private void update() {
         Strana strana=stranyComboBox.getSelectionModel().getSelectedItem();
         List<VolebnyListok> hlasyStrany=volebnyListokDao.getAllByStranaId(strana.getId());
@@ -105,9 +109,9 @@ public class PredbezneVysledkySceneController {
 
         List<KandidatOverview> overviews=overviewManager.getOverviews(strana);
         kandidatiTableView.setItems(FXCollections.observableArrayList(overviews));
-
-
     }
+
+
 
 
 }

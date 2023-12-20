@@ -10,5 +10,6 @@
       <Button fx:id="pridanieLudiButton" layoutX="178.0" layoutY="269.0" mnemonicParsing="false" onAction="#pridanieLudi" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Pridať voliča" />
       <Button fx:id="predbezneButton" layoutX="178.0" layoutY="212.0" mnemonicParsing="false" onAction="#predbezne" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Zobraziť výsledok" />
       <Button fx:id="pridanieUlicButton" layoutX="178.0" layoutY="324.0" mnemonicParsing="false" onAction="#pridanieUlic" prefHeight="39.0" prefWidth="244.0" stylesheets="@buttons.css" text="Pridať ulicu" />
+      <Button fx:id="zavrietButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#zavrietButton" stylesheets="@buttons.css" text="Zavrieť" />
    </children>
 </AnchorPane>

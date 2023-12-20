@@ -14,8 +14,9 @@ public interface VolicDao {
     void deleteAll();
     boolean overHesloMeno(String meno,String priezvisko, String cOP)throws EntityNotFoundException;
      void aktualizujDochadzku(String meno, String priezvisko, String cOP)throws EntityNotFoundException;
+     boolean bolVolit(String meno, String priezvisko, String cOP)throws EntityNotFoundException;
 
-    boolean bolVolit (String meno,String priezvisko, String cOP)throws EntityNotFoundException;
+
 
 }
 

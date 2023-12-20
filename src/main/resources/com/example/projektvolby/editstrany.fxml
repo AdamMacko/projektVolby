@@ -25,5 +25,6 @@
       <Label layoutX="182.0" layoutY="31.0" text="Strana:" />
       <ComboBox fx:id="stranaComboBox" layoutX="222.0" layoutY="23.0" prefHeight="26.0" prefWidth="174.0" />
       <Button fx:id="vymazStranuButton" layoutX="471.0" layoutY="27.0" mnemonicParsing="false" onAction="#vymazeStranu" stylesheets="@buttons.css" text="vymazať stranu" />
+      <Button fx:id="spatButton" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#spatButton" stylesheets="@buttons.css" text="Späť" />
    </children>
 </AnchorPane>
