@@ -15,7 +15,13 @@ public class VolenyKandidat {
 	public VolenyKandidat() {
 
 	}
-	public static VolenyKandidat clone(VolenyKandidat k) {
+
+    public VolenyKandidat(Long kandidatId,Long listokId) {
+		this.kandidatId=kandidatId;
+		this.listokId=listokId;
+    }
+
+    public static VolenyKandidat clone(VolenyKandidat k) {
 		return new VolenyKandidat(k.id,k.kandidatId,k.listokId);
 	}
 

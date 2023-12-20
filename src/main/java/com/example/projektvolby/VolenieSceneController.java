@@ -108,7 +108,6 @@ public class VolenieSceneController {
             Strana strana=vyberStranyComboBox.getSelectionModel().getSelectedItem();
             vyberStranyComboBox.setDisable(true);
             vyberKandidatovFlowPane.setDisable(false);
-            volebnyListok.setId(0L);
             volebnyListok.setStranaId(strana.getId());
             volebnyListokDao.save(volebnyListok);
             listokId=volebnyListokDao.najvacsieId();
@@ -141,7 +140,7 @@ public class VolenieSceneController {
 
         }else{
             for (Kandidat kandidat :kandidati){
-                volenyKandidat=new VolenyKandidat(0L,kandidat.getId(),listokId);
+                volenyKandidat=new VolenyKandidat(kandidat.getId(),listokId);
                 volenyKandidatDao.save(volenyKandidat);
             }
             Alert alert=new Alert(Alert.AlertType.CONFIRMATION);

@@ -34,7 +34,10 @@ public class PrihlasenieScenaController {
     @FXML
     void prihlasenie(ActionEvent event) {
 			String[] celeMeno = menoTextField.getText().split(" ");
+
 			String menoA =  menoTextField.getText().trim();
+			int index=menoA.lastIndexOf(" ");
+
 			String heslo = hesloTextField.getText().trim();
 			boolean admin = false;
 		if ("admin".equals(menoA) && "admin".equals(heslo)) {
@@ -42,11 +45,17 @@ public class PrihlasenieScenaController {
 			openAdminlayout();
 			((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
 		}
-		String meno = celeMeno[0];
-		String priezvisko = celeMeno[1];
+		String meno="";
+		String priezvisko="";
+		if (index == -1) {
+			priezvisko = menoA;
+		}else {
+			meno = menoA.substring(0, index).trim();
+			priezvisko = menoA.substring(index + 1).trim();
+		}
 		VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
 		boolean isMenoHesloValid = volicDao.overHesloMeno(meno, priezvisko, heslo);
-		boolean bolVolit = volicDao.overHesloMeno(meno, priezvisko, heslo);
+		boolean bolVolit = volicDao.bolVolit(meno, priezvisko, heslo);
 		if(bolVolit){
 
 			Alert alert = new Alert(Alert.AlertType.ERROR);

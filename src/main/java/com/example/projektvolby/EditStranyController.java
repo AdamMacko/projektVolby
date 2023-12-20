@@ -95,6 +95,12 @@ public class EditStranyController {
             updatedStrana.setId(vybranaStrana.getId());
             System.out.println(updatedStrana);
             aktualizovanaStrana = stranaDao.save(updatedStrana);
+            List<Kandidat> kandidati=kandidatiModel;
+            for (Kandidat kandidat : kandidati){
+            kandidatDao.save(kandidat, vybranaStrana.getId());
+            }
+
+
             System.out.println(aktualizovanaStrana);
         }
 
@@ -118,7 +124,7 @@ public class EditStranyController {
             krstne = celeMeno.substring(0, index).trim();
             priezvisko = celeMeno.substring(index + 1).trim();
         }
-        Kandidat kandidat = new Kandidat( 0L,krstne,priezvisko,age);
+        Kandidat kandidat = new Kandidat(krstne,priezvisko,age);
         kandidatiModel.add(kandidat);
         menoTextField.clear();
         vekTextField.clear();

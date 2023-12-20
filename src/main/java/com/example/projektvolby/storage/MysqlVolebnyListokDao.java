@@ -50,7 +50,7 @@ public class MysqlVolebnyListokDao implements VolebnyListokDao{
     public VolebnyListok save(VolebnyListok volebnyListok) throws EntityNotFoundException {
         Objects.requireNonNull(volebnyListok, "Volebny listok nemoze byt prazdny");
         Objects.requireNonNull(volebnyListok.getStranaId(),"Strana nemoze byt nulova");
-        if (volebnyListok.getId() == 0) { //INSERT
+        if (volebnyListok.getId() == null) { //INSERT
             String query = "INSERT INTO volebny_listok (strany_id) "
                     + "VALUES (?)";
             GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();

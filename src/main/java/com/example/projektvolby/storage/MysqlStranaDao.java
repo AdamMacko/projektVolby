@@ -84,7 +84,7 @@ public class MysqlStranaDao implements StranaDao{
             }
 
             for (Kandidat novyKan: strana.getKandidati()) {
-                if (novyKan.getId() == 0) {
+                if (novyKan.getId() == null) {
                     kandidatDao.save(novyKan, strana.getId());
                 }
             }

@@ -10,8 +10,11 @@ public class VolebnyListok {
 
 	}
 
-	public VolebnyListok(Long id, Long stranaId) {
-		this.id = id;
+	public VolebnyListok( Long stranaId) {
+		this.stranaId=stranaId;
+	}
+	public VolebnyListok( Long id,Long stranaId) {
+		this.id=id;
 		this.stranaId=stranaId;
 	}
 

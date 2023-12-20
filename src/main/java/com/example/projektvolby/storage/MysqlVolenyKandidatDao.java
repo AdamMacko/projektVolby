@@ -45,7 +45,7 @@ public class MysqlVolenyKandidatDao implements VolenyKandidatDao {
         Objects.requireNonNull(volenyKandidat, "volenykandidat nemôže byť prázdna");
         Objects.requireNonNull(volenyKandidat.getKandidatId(),"kandidatid  nemoze byt nula");
         Objects.requireNonNull(volenyKandidat.getListokId(),"volebnylistokid  nemoze byt nula");
-        if (volenyKandidat.getId() == 0) { //INSERT
+        if (volenyKandidat.getId() == null) { //INSERT
             String query = "INSERT INTO voleni_kandidati (voleny_kandidat,volebny_listok_id) "
                     + "VALUES (?,?)";
             GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();

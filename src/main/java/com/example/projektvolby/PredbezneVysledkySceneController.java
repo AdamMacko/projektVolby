@@ -3,21 +3,26 @@ package com.example.projektvolby;
 import com.example.projektvolby.storage.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.awt.event.ActionEvent;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
 public class PredbezneVysledkySceneController {
 
     @FXML
     private Label celkovyPocetLabel;
+
+
 
     @FXML
     private TableView<KandidatOverview> kandidatiTableView;
@@ -33,6 +38,7 @@ public class PredbezneVysledkySceneController {
 
     @FXML
     private ComboBox<Strana> stranyComboBox;
+
 
     private StranaDao stranaDao= DaoFactory.INSTANCE.getStranyDao();
 
@@ -90,6 +96,7 @@ public class PredbezneVysledkySceneController {
 
 
     }
+
     private void update() {
         Strana strana=stranyComboBox.getSelectionModel().getSelectedItem();
         List<VolebnyListok> hlasyStrany=volebnyListokDao.getAllByStranaId(strana.getId());
@@ -101,6 +108,7 @@ public class PredbezneVysledkySceneController {
 
 
     }
+
 
 }
 

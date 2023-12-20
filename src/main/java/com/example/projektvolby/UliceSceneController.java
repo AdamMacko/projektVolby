@@ -180,6 +180,7 @@ public class UliceSceneController {
         if(ulica.getId() !=0){
             uliceDao.delete(ulica.getId());
         }
+
         ulicaModel.remove(ulica);
         System.out.println(ulicaModel);
 

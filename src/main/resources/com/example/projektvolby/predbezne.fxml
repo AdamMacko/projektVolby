@@ -8,28 +8,28 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ComboBox fx:id="stranyComboBox" layoutX="67.0" layoutY="17.0" prefHeight="27.0" prefWidth="158.0" stylesheets="@comboBox.css" />
-      <Label layoutX="4.0" layoutY="23.0" stylesheets="@Labels.css" text="Strana:">
+      <ComboBox fx:id="stranyComboBox" layoutX="82.0" layoutY="45.0" prefHeight="27.0" prefWidth="158.0" stylesheets="@comboBox.css" />
+      <Label layoutX="20.0" layoutY="52.0" stylesheets="@Labels.css" text="Strana:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="237.0" layoutY="23.0" prefHeight="21.0" prefWidth="95.0" text="Počet hlasov:">
+      <Label layoutX="252.0" layoutY="52.0" prefHeight="21.0" prefWidth="95.0" text="Počet hlasov:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="pocetHlasovLabel" layoutX="324.0" layoutY="24.0" text="vyber stranu">
+      <Label fx:id="pocetHlasovLabel" layoutX="335.0" layoutY="53.0" text="vyber stranu">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="kandidatiTableView" layoutX="49.0" layoutY="58.0" prefHeight="341.0" prefWidth="501.0" stylesheets="@tableView.css" />
-      <Label layoutX="420.0" layoutY="12.0" text="Dochádzka :" />
-      <Label fx:id="pocetOdvolenychLabel" layoutX="525.0" layoutY="12.0" text="0" />
-      <Label layoutX="541.0" layoutY="12.0" text="/" />
-      <Label fx:id="celkovyPocetLabel" layoutX="557.0" layoutY="12.0" text="0" />
-      <Label layoutX="420.0" layoutY="34.0" text="Percentuálna účasť :" />
-      <Label fx:id="percentavolicovLabel" layoutX="544.0" layoutY="35.0" text="0%" />
+      <TableView fx:id="kandidatiTableView" layoutX="18.0" layoutY="84.0" prefHeight="315.0" prefWidth="557.0" stylesheets="@tableView.css" />
+      <Label layoutX="420.0" layoutY="39.0" text="Dochádzka :" />
+      <Label fx:id="pocetOdvolenychLabel" layoutX="503.0" layoutY="39.0" text="0" />
+      <Label layoutX="522.0" layoutY="39.0" text="/" />
+      <Label fx:id="celkovyPocetLabel" layoutX="541.0" layoutY="39.0" text="0" />
+      <Label layoutX="420.0" layoutY="54.0" text="Percentuálna účasť :" />
+      <Label fx:id="percentavolicovLabel" layoutX="537.0" layoutY="54.0" text="0%" />
    </children>
 </AnchorPane>
