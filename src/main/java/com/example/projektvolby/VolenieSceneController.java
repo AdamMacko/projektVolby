@@ -182,17 +182,17 @@ public class VolenieSceneController {
             alert.setHeaderText(null);
             alert.setContentText(message);
 
-            // Customize the buttons
+
             ButtonType buttonTypeYes = new ButtonType("Ano");
             ButtonType buttonTypeNo = new ButtonType("Nie");
 
             alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 
-            // Show the dialog and wait for a button to be clicked
-            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.setAlwaysOnTop(true); // Set to true if you want the dialog to be always on top
 
-            // Wait for the user's choice
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+
+
             boolean result = alert.showAndWait().orElse(buttonTypeNo) == buttonTypeYes;
 
             return result;

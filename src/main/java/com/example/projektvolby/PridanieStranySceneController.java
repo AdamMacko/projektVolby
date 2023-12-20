@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -172,7 +173,7 @@ public class PridanieStranySceneController {
             krstne = celeMeno.substring(0, index).trim();
             priezvisko = celeMeno.substring(index + 1).trim();
         }
-        Kandidat kandidat = new Kandidat( 0L,krstne,priezvisko,age);
+        Kandidat kandidat = new Kandidat(krstne,priezvisko,age);
         stranyFxModel.kandidatiModel().add(kandidat);
         menoTextField.clear();
         vekTextField.clear();
@@ -189,13 +190,38 @@ public class PridanieStranySceneController {
 
     @FXML
     void vymazKanidata(ActionEvent event) {
-        Kandidat kandidat= kandidatiListView.getSelectionModel().getSelectedItem();
-        System.out.print(kandidat);
-        if(kandidat !=null){
-            stranyFxModel.kandidatiModel().remove(kandidat);
+            Kandidat kandidat= kandidatiListView.getSelectionModel().getSelectedItem();
+            System.out.print(kandidat);
+            if(kandidat !=null){
+                stranyFxModel.kandidatiModel().remove(kandidat);
 
+            }
+
+
+    }
+    public class ConfirmationDialog {
+
+        public static boolean show(String message) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+
+
+            ButtonType buttonTypeYes = new ButtonType("Ano");
+            ButtonType buttonTypeNo = new ButtonType("Nie");
+
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+
+
+            boolean result = alert.showAndWait().orElse(buttonTypeNo) == buttonTypeYes;
+
+            return result;
         }
-
     }
 
 }

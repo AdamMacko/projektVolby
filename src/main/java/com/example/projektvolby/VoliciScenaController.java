@@ -266,17 +266,20 @@ public class VoliciScenaController {
     @FXML
     //tlacidlo na vymazanie volica
     void vymazat(ActionEvent event) {
-        Volic volic = volicListView.getSelectionModel().getSelectedItem();
-        if (volic != null) {
-            VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
-            try {
-                volicDao.delete(volic.getId()); // Vymazanie z databázy podľa ID
-                volicFxModel.volic().remove(volic); // Odstránenie z používateľského rozhrania
-            } catch (EntityNotFoundException e) {
+        if(UliceSceneController.ConfirmationDialog.show("naozaj chceťe vymazať tohto voliča?Táto operácia sa nedá vrátiť")){
+            Volic volic = volicListView.getSelectionModel().getSelectedItem();
+            if (volic != null) {
+                VolicDao volicDao = DaoFactory.INSTANCE.getVoliciDao();
+                try {
+                    volicDao.delete(volic.getId()); // Vymazanie z databázy podľa ID
+                    volicFxModel.volic().remove(volic); // Odstránenie z používateľského rozhrania
+                } catch (EntityNotFoundException e) {
 
-                e.printStackTrace();
+                    e.printStackTrace();
+                }
             }
         }
+
     }
 
 
@@ -313,6 +316,30 @@ public class VoliciScenaController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public class ConfirmationDialog {
+
+        public static boolean show(String message) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+
+
+            ButtonType buttonTypeYes = new ButtonType("Ano");
+            ButtonType buttonTypeNo = new ButtonType("Nie");
+
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+
+
+            boolean result = alert.showAndWait().orElse(buttonTypeNo) == buttonTypeYes;
+
+            return result;
         }
     }
 
