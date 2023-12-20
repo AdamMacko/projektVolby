@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,6 +25,8 @@ public class PridanieStranySceneController {
 
     @FXML
     private TextField menoTextField;
+    @FXML
+    private Button spatButton;
 
     @FXML
     private TextField nazovTextField;
@@ -196,6 +199,11 @@ public class PridanieStranySceneController {
 
         }
 
+    }
+
+    @FXML
+    void spatButton(ActionEvent event) {
+        ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
     }
 
 }

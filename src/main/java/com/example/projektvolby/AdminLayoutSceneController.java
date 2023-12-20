@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class AdminLayoutSceneController {
+    @FXML
+    private Button zavrietButton;
 
     @FXML
     private Button editaciaStranyButton;
@@ -163,6 +165,11 @@ public class AdminLayoutSceneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void zavrietButton(ActionEvent event) {
+        ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
     }
 
 
