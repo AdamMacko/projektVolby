@@ -75,6 +75,7 @@ public class UliceSceneController {
             if (result.get() != ButtonType.OK){
                 return;
             }
+        uliceDao.deleteall();
         }
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");

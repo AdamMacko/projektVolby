@@ -121,6 +121,12 @@ public class EditStranyController {
             if (result.get() != ButtonType.OK){
                 return;
             }
+            Strana vybranaStrana=stranaComboBox.getSelectionModel().getSelectedItem();
+            List<Kandidat> kandidati=kandidatDao.getAllByStranaId(vybranaStrana.getId());
+            for (Kandidat kandidat : kandidati){
+                kandidatDao.delete(kandidat.getId());
+            }
+
         }
 
         FileChooser fileChooser = new FileChooser();

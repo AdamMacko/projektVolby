@@ -111,7 +111,11 @@ public class VoliciScenaController {
             if (result.get() != ButtonType.OK){
                 return;
             }
+            VolicDao voliciDao=DaoFactory.INSTANCE.getVoliciDao();
+            voliciDao.deleteAll();
+
         }
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("CSV Files", "*.csv"));
