@@ -28,4 +28,5 @@ public class KandidatOverview {
     public double getPercentaHlasov() {
         return percentaHlasov;
     }
+
 }

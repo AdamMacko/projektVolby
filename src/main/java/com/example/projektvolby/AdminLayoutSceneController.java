@@ -56,6 +56,12 @@ public class AdminLayoutSceneController {
         openvoliciOkno();
 
     }
+    @FXML
+    void initialize() {
+        System.out.println("Button sizes:");
+        System.out.println("PridanieStranyButton: " + pridaniaStranyButton.getWidth() + "x" + pridaniaStranyButton.getHeight());
+        // pridajte podobné výpisy pre ostatné tlačidlá
+    }
 
     @FXML
     void pridanieStrany(ActionEvent event) {

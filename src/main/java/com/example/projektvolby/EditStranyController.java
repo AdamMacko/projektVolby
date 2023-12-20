@@ -208,27 +208,57 @@ public class EditStranyController {
 
     @FXML
     void vymazeKandidata(ActionEvent event) {
-        Kandidat kandidat=kandidatiListView.getSelectionModel().getSelectedItem();
-        if (kandidat != null){
-            kandidatiModel.remove(kandidat);
+        if(UliceSceneController.ConfirmationDialog.show("naozaj chcete vymazat tohto kandidata?Tato operacia sa neda vratit")){
+            Kandidat kandidat=kandidatiListView.getSelectionModel().getSelectedItem();
+            if (kandidat != null){
+                kandidatiModel.remove(kandidat);
+            }
         }
+
 
     }
 
     @FXML
     void vymazeStranu(ActionEvent event) {
-        Strana vybranaStrana=stranaComboBox.getSelectionModel().getSelectedItem();
-        stranaDao.delete(vybranaStrana.getId());
-        List<Strana> strany=stranaDao.getAll();
-        stranyModel= FXCollections.observableArrayList(strany);
-        stranaComboBox.setItems(stranyModel);
-        stranaComboBox.getSelectionModel().selectFirst();
+        if(UliceSceneController.ConfirmationDialog.show("naozaj chcete vymazat tuto stranu?Tato operacia sa neda vratit")){
+            Strana vybranaStrana=stranaComboBox.getSelectionModel().getSelectedItem();
+            stranaDao.delete(vybranaStrana.getId());
+            List<Strana> strany=stranaDao.getAll();
+            stranyModel= FXCollections.observableArrayList(strany);
+            stranaComboBox.setItems(stranyModel);
+            stranaComboBox.getSelectionModel().selectFirst();
+        }
+
 
     }
 
     @FXML
     void spatButton(ActionEvent event) {
         ((Stage) ((javafx.scene.control.Button) event.getSource()).getScene().getWindow()).close();
+    }
+    public class ConfirmationDialog {
+
+        public static boolean show(String message) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+
+
+            ButtonType buttonTypeYes = new ButtonType("Ano");
+            ButtonType buttonTypeNo = new ButtonType("Nie");
+
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.setAlwaysOnTop(true);
+
+
+            boolean result = alert.showAndWait().orElse(buttonTypeNo) == buttonTypeYes;
+
+            return result;
+        }
     }
 
 }
